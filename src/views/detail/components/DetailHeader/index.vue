@@ -25,14 +25,15 @@ function goBack() {
         <ArrowLeft :size="16" />
         <span>返回</span>
       </button>
-      <span class="badge">{{ article.categoryName }}</span>
     </div>
 
     <div class="title-row">
       <h1 class="title">{{ article.title }}</h1>
-      <div v-if="article.tags.length > 0" class="tags">
-        <span v-for="tag in article.tags" :key="tag">#{{ tag }}</span>
-      </div>
+      <span class="badge">{{ article.categoryName }}</span>
+    </div>
+
+    <div v-if="article.tags.length > 0" class="tags">
+      <span v-for="tag in article.tags" :key="tag">#{{ tag }}</span>
     </div>
     <p class="summary">{{ article.summary }}</p>
 

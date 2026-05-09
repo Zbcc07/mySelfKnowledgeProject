@@ -77,7 +77,7 @@
 
 .title-row {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   flex-wrap: wrap;
   gap: 12px;
   margin: 6px 0;
@@ -120,6 +120,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
+  margin-top: 8px;
 
   span {
     padding: 3px 8px;
