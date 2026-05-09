@@ -1,41 +1,44 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { ElEmpty } from 'element-plus'
+import { ElEmpty, ElSkeleton } from 'element-plus'
 import DetailHeader from './components/DetailHeader/index.vue'
-import ArticleBody from './components/ArticleBody/index.vue'
 import TocNav from './components/TocNav/index.vue'
-import RelatedList from './components/RelatedList/index.vue'
-import detailDataJson from '../../../public/data/detail/index.json'
-import type { ArticleDetail, DetailData } from '../../types/content'
+import type { DocDetail, TocItem } from '../../types/content'
+import { loadDocDetail } from '../../utils/dataLoader'
+import { recordVisit } from '../../utils/visitRecord'
 
-const detailData = detailDataJson as DetailData
 const route = useRoute()
-
 const articleId = computed(() => String(route.params.id ?? ''))
 
-const article = computed<ArticleDetail | undefined>(() =>
-  detailData.articles.find((item) => item.id === articleId.value),
-)
+const article = ref<DocDetail | null>(null)
+const loading = ref(true)
+const notFound = ref(false)
 
-const relatedArticles = computed<ArticleDetail[]>(() => {
-  if (!article.value) return []
-  return article.value.related
-    .map((id) => detailData.articles.find((item) => item.id === id))
-    .filter((item): item is ArticleDetail => Boolean(item))
-})
+async function fetchArticle(id: string) {
+  loading.value = true
+  notFound.value = false
+  article.value = null
+  try {
+    article.value = await loadDocDetail(id)
+    recordVisit(id)
+  } catch {
+    notFound.value = true
+  } finally {
+    loading.value = false
+  }
+}
 
-// 目录当前高亮项
+// 目录高亮
 const activeTocId = ref<string>('')
 let observer: IntersectionObserver | null = null
 
 function setupObserver() {
   observer?.disconnect()
-  if (!article.value) return
+  if (!article.value || article.value.toc.length === 0) return
 
-  const sectionIds = article.value.toc.map((i) => i.id)
-  const targets = sectionIds
-    .map((id) => document.getElementById(id))
+  const targets = article.value.toc
+    .map((i: TocItem) => document.getElementById(i.id))
     .filter((el): el is HTMLElement => Boolean(el))
 
   if (targets.length === 0) return
@@ -43,24 +46,24 @@ function setupObserver() {
   observer = new IntersectionObserver(
     (entries) => {
       const visible = entries
-        .filter((entry) => entry.isIntersecting)
+        .filter((e) => e.isIntersecting)
         .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0]
-      if (visible) {
-        activeTocId.value = visible.target.id
-      }
+      if (visible) activeTocId.value = visible.target.id
     },
     { rootMargin: '-40% 0px -55% 0px', threshold: 0 },
   )
-
   targets.forEach((el) => observer!.observe(el))
 }
 
-onMounted(() => {
-  nextTick(setupObserver)
+onMounted(async () => {
+  await fetchArticle(articleId.value)
+  await nextTick()
+  setupObserver()
 })
 
-watch(articleId, async () => {
+watch(articleId, async (id) => {
   activeTocId.value = ''
+  await fetchArticle(id)
   await nextTick()
   setupObserver()
 })
@@ -77,7 +80,19 @@ function handleTocSelect(id: string) {
 
 <template>
   <div class="detail-page">
-    <template v-if="article">
+    <!-- 加载骨架 -->
+    <template v-if="loading">
+      <div class="skeleton-header">
+        <ElSkeleton :rows="4" animated />
+      </div>
+      <div class="detail-layout">
+        <ElSkeleton :rows="6" animated />
+        <ElSkeleton :rows="12" animated />
+      </div>
+    </template>
+
+    <!-- 文章内容 -->
+    <template v-else-if="article">
       <DetailHeader :article="article" />
 
       <div class="detail-layout">
@@ -86,13 +101,16 @@ function handleTocSelect(id: string) {
           :active-id="activeTocId"
           @select="handleTocSelect"
         />
-        <ArticleBody :sections="article.sections" />
+        <!-- Markdown 渲染区域 -->
+        <article class="article-body">
+          <!-- eslint-disable-next-line vue/no-v-html -->
+          <div class="markdown-content" v-html="article.html" />
+        </article>
       </div>
-
-      <RelatedList :items="relatedArticles" />
     </template>
 
-    <div v-else class="empty-wrap">
+    <!-- 404 -->
+    <div v-else-if="notFound" class="empty-wrap">
       <el-empty description="没找到这篇文章">
         <router-link to="/">
           <el-button type="primary">返回首页</el-button>

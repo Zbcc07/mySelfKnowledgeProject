@@ -1,0 +1,43 @@
+{
+  "id": "1778313737776",
+  "title": "Vue3 响应式系统整理",
+  "category": "frontend",
+  "categoryName": "前端",
+  "categoryColor": "sun",
+  "tags": [
+    "Vue3",
+    "响应式",
+    "Composition API"
+  ],
+  "date": "2026-05-09",
+  "summary": "整理 Vue3 响应式系统的核心概念、常见 API 和实践注意事项。",
+  "author": "Sunny",
+  "source": "",
+  "toc": [
+    {
+      "id": "核心概念",
+      "label": "核心概念"
+    },
+    {
+      "id": "常用-api",
+      "label": "常用 API"
+    },
+    {
+      "id": "ref",
+      "label": "ref"
+    },
+    {
+      "id": "reactive",
+      "label": "reactive"
+    },
+    {
+      "id": "computed",
+      "label": "computed"
+    },
+    {
+      "id": "注意事项",
+      "label": "注意事项"
+    }
+  ],
+  "html": "<h2 id=\"核心概念\">核心概念</h2>\n<p>Vue3 的响应式系统基于 ES Proxy 实现，相比 Vue2 的 Object.defineProperty 有更完整的拦截能力。</p>\n<h2 id=\"常用-api\">常用 API</h2>\n<h3 id=\"ref\">ref</h3>\n<p>适合基本类型和需要整体替换的对象。</p>\n<pre><code class=\"hljs language-ts\"><span class=\"hljs-keyword\">const</span> count = <span class=\"hljs-title function_\">ref</span>(<span class=\"hljs-number\">0</span>)\n<span class=\"hljs-keyword\">const</span> user = <span class=\"hljs-title function_\">ref</span>({ <span class=\"hljs-attr\">name</span>: <span class=\"hljs-string\">&#x27;Sunny&#x27;</span> })\n\n<span class=\"hljs-comment\">// 访问时需要 .value</span>\n<span class=\"hljs-variable language_\">console</span>.<span class=\"hljs-title function_\">log</span>(count.<span class=\"hljs-property\">value</span>)\n</code></pre><h3 id=\"reactive\">reactive</h3>\n<p>适合稳定结构的对象，访问时不需要 <code>.value</code>。</p>\n<pre><code class=\"hljs language-ts\"><span class=\"hljs-keyword\">const</span> state = <span class=\"hljs-title function_\">reactive</span>({\n  <span class=\"hljs-attr\">count</span>: <span class=\"hljs-number\">0</span>,\n  <span class=\"hljs-attr\">name</span>: <span class=\"hljs-string\">&#x27;Sunny&#x27;</span>,\n})\n</code></pre><h3 id=\"computed\">computed</h3>\n<p>派生数据优先用 computed，避免手动同步。</p>\n<pre><code class=\"hljs language-ts\"><span class=\"hljs-keyword\">const</span> double = <span class=\"hljs-title function_\">computed</span>(<span class=\"hljs-function\">() =&gt;</span> count.<span class=\"hljs-property\">value</span> * <span class=\"hljs-number\">2</span>)\n</code></pre><h2 id=\"注意事项\">注意事项</h2>\n<ul>\n<li>解构 reactive 对象会丢失响应性，需要用 <code>toRefs</code></li>\n<li><code>ref</code> 在模板中自动解包，不需要写 <code>.value</code></li>\n<li>避免在 <code>watch</code> 中直接修改被监听的值，容易造成无限循环</li>\n</ul>\n"
+}

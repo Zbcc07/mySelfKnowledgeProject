@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { ArrowLeft, Calendar, Clock, User } from 'lucide-vue-next'
+import { ArrowLeft, Calendar, ExternalLink, User } from 'lucide-vue-next'
 import { useRouter } from 'vue-router'
-import type { ArticleDetail } from '../../../../types/content'
+import type { DocDetail } from '../../../../types/content'
 
 defineProps<{
-  article: ArticleDetail
+  article: DocDetail
 }>()
 
 const router = useRouter()
@@ -25,12 +25,12 @@ function goBack() {
       <span>返回</span>
     </button>
 
-    <span class="badge">{{ article.category }}</span>
+    <span class="badge">{{ article.categoryName }}</span>
     <h1 class="title">{{ article.title }}</h1>
     <p class="summary">{{ article.summary }}</p>
 
     <div class="meta">
-      <span>
+      <span v-if="article.author">
         <User :size="14" />
         {{ article.author }}
       </span>
@@ -38,10 +38,16 @@ function goBack() {
         <Calendar :size="14" />
         {{ article.date }}
       </span>
-      <span>
-        <Clock :size="14" />
-        {{ article.readTime }}
-      </span>
+      <a
+        v-if="article.source"
+        :href="article.source"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="source-link"
+      >
+        <ExternalLink :size="14" />
+        查看来源
+      </a>
     </div>
 
     <div v-if="article.tags.length > 0" class="tags">

@@ -1,0 +1,67 @@
+[
+  {
+    "id": "1778313737776",
+    "title": "Vue3 响应式系统整理",
+    "category": "frontend",
+    "categoryName": "前端",
+    "tags": [
+      "Vue3",
+      "响应式",
+      "Composition API"
+    ],
+    "summary": "整理 Vue3 响应式系统的核心概念、常见 API 和实践注意事项。",
+    "plainText": "核心概念\r\n\r\nVue3 的响应式系统基于 ES Proxy 实现，相比 Vue2 的 Object.defineProperty 有更完整的拦截能力。\r\n\r\n常用 API\r\n\r\nref\r\n\r\n适合基本类型和需要整体替换的对象。\r\n\r\n\r\n\r\nreactive\r\n\r\n适合稳定结构的对象，访问时不需要 。\r\n\r\n\r\n\r\ncomputed\r\n\r\n派生数据优先用 computed，避免手动同步。\r\n\r\n\r\n\r\n注意事项\r\n\r\n- 解构 reactive 对象会丢失响应性，需要用 \r\n-  在模板中自动解包，不需要写 \r\n- 避免在  中直接修改被监听的值，容易造成无限循环"
+  },
+  {
+    "id": "1778313737608",
+    "title": "Prompt Engineering 实践整理",
+    "category": "ai",
+    "categoryName": "AI",
+    "tags": [
+      "AI",
+      "Prompt",
+      "LLM"
+    ],
+    "summary": "整理常用的 Prompt 编写技巧和模式，提升与大语言模型交互的效果。",
+    "plainText": "基本原则\r\n\r\n好的 Prompt 应该做到：\r\n\r\n- 明确目标：告诉模型你要什么，而不是你不要什么\r\n- 提供上下文：背景信息越充分，回答越准确\r\n- 指定格式：需要列表就说\"用列表\"，需要代码就说\"用代码\"\r\n- 给出示例：Few-shot 示例能显著提升输出质量\r\n\r\n常用模式\r\n\r\n角色设定\r\n\r\n\r\n\r\n思维链（Chain of Thought）\r\n\r\n\r\n\r\n结构化输出\r\n\r\n\r\n\r\n调试技巧\r\n\r\n- 输出不符合预期时，先检查 Prompt 是否有歧义\r\n- 复杂任务拆分成多个步骤，分轮对话完成\r\n- 用\"请重新思考\"或\"你确定吗\"引导模型自我纠错\r\n\r\n注意事项\r\n\r\n- 避免在 Prompt 中包含敏感信息\r\n- 长上下文时把最重要的信息放在开头或结尾\r\n- 不同模型对 Prompt 的敏感度不同，需要针对性调整"
+  },
+  {
+    "id": "1778313737886",
+    "title": "Vite 配置常用项整理",
+    "category": "frontend",
+    "categoryName": "前端",
+    "tags": [
+      "Vite",
+      "构建工具",
+      "配置"
+    ],
+    "summary": "整理 Vite 项目中常用的配置项，包括路径别名、环境变量、构建优化等。",
+    "plainText": "路径别名\r\n\r\n\r\n\r\n配置后可以用  代替相对路径。\r\n\r\nbase 路径\r\n\r\n部署到 GitHub Pages 子路径时需要配置：\r\n\r\n\r\n\r\n环境变量\r\n\r\nVite 通过  文件管理环境变量，变量名必须以  开头才能在客户端访问：\r\n\r\n\r\n\r\n在代码中通过  访问。\r\n\r\n构建优化"
+  },
+  {
+    "id": "1778313737306",
+    "title": "Node.js Stream 使用整理",
+    "category": "backend",
+    "categoryName": "后端",
+    "tags": [
+      "Node.js",
+      "Stream",
+      "性能"
+    ],
+    "summary": "整理 Node.js Stream 的核心概念和常见使用场景，避免大文件处理时的内存问题。",
+    "plainText": "为什么用 Stream\r\n\r\n处理大文件时，一次性读入内存会导致内存溢出。Stream 以分块方式处理数据，内存占用稳定。\r\n\r\n四种 Stream 类型\r\n\r\n 类型  说明 \r\n------------\r\n Readable  可读流，数据来源 \r\n Writable  可写流，数据目标 \r\n Duplex  双工流，可读可写 \r\n Transform  转换流，读写时可修改数据 \r\n\r\n常见用法\r\n\r\n读取文件\r\n\r\n\r\n\r\npipe 管道\r\n\r\n\r\n\r\n注意事项\r\n\r\n- 监听  事件，否则流出错会抛出未捕获异常\r\n-  会自动处理背压（backpressure）\r\n- Node 18+ 推荐使用  的"
+  },
+  {
+    "id": "1778313737281",
+    "title": "MySQL 索引优化笔记",
+    "category": "database",
+    "categoryName": "数据库",
+    "tags": [
+      "MySQL",
+      "索引",
+      "性能优化"
+    ],
+    "summary": "整理 MySQL 索引的基本原理、常见类型和优化建议，帮助排查慢查询问题。",
+    "plainText": "索引的本质\r\n\r\nMySQL InnoDB 使用 B+ 树存储索引，叶子节点存储完整行数据（聚簇索引）或主键值（二级索引）。\r\n\r\n常见索引类型\r\n\r\n- 主键索引：唯一且非空，InnoDB 表必须有\r\n- 唯一索引：值唯一，允许一个 NULL\r\n- 普通索引：最基础的索引类型\r\n- 联合索引：多列组合，遵循最左前缀原则\r\n- 全文索引：用于文本搜索，不适合精确匹配\r\n\r\n最左前缀原则\r\n\r\n联合索引  可以命中：\r\n\r\n- \r\n- \r\n- \r\n\r\n不能命中：\r\n\r\n- （跳过了 a）\r\n- \r\n\r\nEXPLAIN 分析\r\n\r\n\r\n\r\n关注  字段：\r\n\r\n type  说明 \r\n------------\r\n const  主键或唯一索引等值查询，最优 \r\n ref  普通索引等值查询 \r\n range  索引范围扫描 \r\n ALL  全表扫描，需要优化 \r\n\r\n常见优化建议\r\n\r\n- 高频查询字段加索引，但不要过度索引（影响写入性能）\r\n- 避免在索引列上使用函数或运算\r\n- 字符串索引考虑前缀索引节省空间\r\n- 定期用  检查索引使用情况"
+  }
+]

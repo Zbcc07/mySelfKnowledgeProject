@@ -1,16 +1,39 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import AppTopbar from './views/home/components/AppTopbar/index.vue'
 import AppSidebar from './views/home/components/AppSidebar/index.vue'
 import homeDataJson from '../public/data/home/index.json'
-import type { HomeData } from './types/content'
+import type { HomeData, Category } from './types/content'
+import { categories as categoryConfigs } from './config/categories'
+import { loadCategoryStats, loadTags } from './utils/dataLoader'
 
 const homeData = homeDataJson as HomeData
 const route = useRoute()
 
-// 详情页隐藏侧边栏，让内容区可以占满可读宽度
 const showSidebar = computed(() => route.name === 'home')
+
+// 侧边栏动态数据
+const sidebarCategories = ref<Category[]>([])
+const sidebarTags = ref<string[]>([])
+
+onMounted(async () => {
+  try {
+    const [stats, tags] = await Promise.all([loadCategoryStats(), loadTags()])
+    sidebarCategories.value = categoryConfigs.map((c) => ({
+      id: c.id,
+      name: c.name,
+      icon: c.icon,
+      color: c.color,
+      count: stats[c.id] ?? 0,
+    }))
+    sidebarTags.value = tags
+  } catch {
+    // 加载失败时使用静态数据兜底
+    sidebarCategories.value = homeData.categories
+    sidebarTags.value = homeData.tags
+  }
+})
 </script>
 
 <template>
@@ -20,8 +43,8 @@ const showSidebar = computed(() => route.name === 'home')
     <div class="layout" :class="{ 'layout--full': !showSidebar }">
       <AppSidebar
         v-if="showSidebar"
-        :categories="homeData.categories"
-        :tags="homeData.tags"
+        :categories="sidebarCategories"
+        :tags="sidebarTags"
         :panel="homeData.sidebarPanel"
       />
 

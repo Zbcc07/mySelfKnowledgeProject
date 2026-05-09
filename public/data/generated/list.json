@@ -1,0 +1,82 @@
+[
+  {
+    "id": "1778313737776",
+    "title": "Vue3 响应式系统整理",
+    "category": "frontend",
+    "categoryName": "前端",
+    "categoryColor": "sun",
+    "tags": [
+      "Vue3",
+      "响应式",
+      "Composition API"
+    ],
+    "date": "2026-05-09",
+    "summary": "整理 Vue3 响应式系统的核心概念、常见 API 和实践注意事项。",
+    "author": "Sunny",
+    "source": ""
+  },
+  {
+    "id": "1778313737608",
+    "title": "Prompt Engineering 实践整理",
+    "category": "ai",
+    "categoryName": "AI",
+    "categoryColor": "sky",
+    "tags": [
+      "AI",
+      "Prompt",
+      "LLM"
+    ],
+    "date": "2026-05-09",
+    "summary": "整理常用的 Prompt 编写技巧和模式，提升与大语言模型交互的效果。",
+    "author": "Sunny",
+    "source": ""
+  },
+  {
+    "id": "1778313737886",
+    "title": "Vite 配置常用项整理",
+    "category": "frontend",
+    "categoryName": "前端",
+    "categoryColor": "sun",
+    "tags": [
+      "Vite",
+      "构建工具",
+      "配置"
+    ],
+    "date": "2026-05-08",
+    "summary": "整理 Vite 项目中常用的配置项，包括路径别名、环境变量、构建优化等。",
+    "author": "Sunny",
+    "source": ""
+  },
+  {
+    "id": "1778313737306",
+    "title": "Node.js Stream 使用整理",
+    "category": "backend",
+    "categoryName": "后端",
+    "categoryColor": "coral",
+    "tags": [
+      "Node.js",
+      "Stream",
+      "性能"
+    ],
+    "date": "2026-05-07",
+    "summary": "整理 Node.js Stream 的核心概念和常见使用场景，避免大文件处理时的内存问题。",
+    "author": "Sunny",
+    "source": ""
+  },
+  {
+    "id": "1778313737281",
+    "title": "MySQL 索引优化笔记",
+    "category": "database",
+    "categoryName": "数据库",
+    "categoryColor": "leaf",
+    "tags": [
+      "MySQL",
+      "索引",
+      "性能优化"
+    ],
+    "date": "2026-05-06",
+    "summary": "整理 MySQL 索引的基本原理、常见类型和优化建议，帮助排查慢查询问题。",
+    "author": "Sunny",
+    "source": ""
+  }
+]

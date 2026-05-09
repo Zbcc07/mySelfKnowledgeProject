@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ElEmpty } from 'element-plus'
 import { RouterLink } from 'vue-router'
-import type { UpdateItem } from '../../../../types/content'
+import type { RecentItem } from '../../../../types/content'
 
 defineProps<{
-  updates: UpdateItem[]
+  updates: RecentItem[]
 }>()
 </script>
 
@@ -27,6 +27,9 @@ defineProps<{
         <span>{{ article.category }} · {{ article.date }}</span>
         <h3>{{ article.title }}</h3>
         <p>{{ article.summary }}</p>
+        <div v-if="article.tags.length > 0" class="update-tags">
+          <span v-for="tag in article.tags.slice(0, 3)" :key="tag">#{{ tag }}</span>
+        </div>
       </RouterLink>
     </div>
     <el-empty v-else description="暂无更新" />

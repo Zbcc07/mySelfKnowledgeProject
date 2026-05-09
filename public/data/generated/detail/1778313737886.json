@@ -1,0 +1,35 @@
+{
+  "id": "1778313737886",
+  "title": "Vite 配置常用项整理",
+  "category": "frontend",
+  "categoryName": "前端",
+  "categoryColor": "sun",
+  "tags": [
+    "Vite",
+    "构建工具",
+    "配置"
+  ],
+  "date": "2026-05-08",
+  "summary": "整理 Vite 项目中常用的配置项，包括路径别名、环境变量、构建优化等。",
+  "author": "Sunny",
+  "source": "",
+  "toc": [
+    {
+      "id": "路径别名",
+      "label": "路径别名"
+    },
+    {
+      "id": "base-路径",
+      "label": "base 路径"
+    },
+    {
+      "id": "环境变量",
+      "label": "环境变量"
+    },
+    {
+      "id": "构建优化",
+      "label": "构建优化"
+    }
+  ],
+  "html": "<h2 id=\"路径别名\">路径别名</h2>\n<pre><code class=\"hljs language-ts\"><span class=\"hljs-keyword\">import</span> path <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">&#x27;path&#x27;</span>\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-title function_\">defineConfig</span>({\n  <span class=\"hljs-attr\">resolve</span>: {\n    <span class=\"hljs-attr\">alias</span>: {\n      <span class=\"hljs-string\">&#x27;@&#x27;</span>: path.<span class=\"hljs-title function_\">resolve</span>(__dirname, <span class=\"hljs-string\">&#x27;src&#x27;</span>),\n    },\n  },\n})\n</code></pre><p>配置后可以用 <code>@/components/Button.vue</code> 代替相对路径。</p>\n<h2 id=\"base-路径\">base 路径</h2>\n<p>部署到 GitHub Pages 子路径时需要配置：</p>\n<pre><code class=\"hljs language-ts\"><span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-title function_\">defineConfig</span>({\n  <span class=\"hljs-attr\">base</span>: <span class=\"hljs-string\">&#x27;/my-repo/&#x27;</span>,\n})\n</code></pre><h2 id=\"环境变量\">环境变量</h2>\n<p>Vite 通过 <code>.env</code> 文件管理环境变量，变量名必须以 <code>VITE_</code> 开头才能在客户端访问：</p>\n<pre><code>VITE_API_URL=https://api.example.com\n</code></pre><p>在代码中通过 <code>import.meta.env.VITE_API_URL</code> 访问。</p>\n<h2 id=\"构建优化\">构建优化</h2>\n<pre><code class=\"hljs language-ts\"><span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> <span class=\"hljs-title function_\">defineConfig</span>({\n  <span class=\"hljs-attr\">build</span>: {\n    <span class=\"hljs-attr\">rollupOptions</span>: {\n      <span class=\"hljs-attr\">output</span>: {\n        <span class=\"hljs-attr\">manualChunks</span>: {\n          <span class=\"hljs-attr\">vendor</span>: [<span class=\"hljs-string\">&#x27;vue&#x27;</span>, <span class=\"hljs-string\">&#x27;vue-router&#x27;</span>],\n        },\n      },\n    },\n  },\n})\n</code></pre>"
+}

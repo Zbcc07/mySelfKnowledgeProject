@@ -1,0 +1,47 @@
+{
+  "id": "1778313737608",
+  "title": "Prompt Engineering 实践整理",
+  "category": "ai",
+  "categoryName": "AI",
+  "categoryColor": "sky",
+  "tags": [
+    "AI",
+    "Prompt",
+    "LLM"
+  ],
+  "date": "2026-05-09",
+  "summary": "整理常用的 Prompt 编写技巧和模式，提升与大语言模型交互的效果。",
+  "author": "Sunny",
+  "source": "",
+  "toc": [
+    {
+      "id": "基本原则",
+      "label": "基本原则"
+    },
+    {
+      "id": "常用模式",
+      "label": "常用模式"
+    },
+    {
+      "id": "角色设定",
+      "label": "角色设定"
+    },
+    {
+      "id": "思维链-chain-of-thought",
+      "label": "思维链（Chain of Thought）"
+    },
+    {
+      "id": "结构化输出",
+      "label": "结构化输出"
+    },
+    {
+      "id": "调试技巧",
+      "label": "调试技巧"
+    },
+    {
+      "id": "注意事项",
+      "label": "注意事项"
+    }
+  ],
+  "html": "<h2 id=\"基本原则\">基本原则</h2>\n<p>好的 Prompt 应该做到：</p>\n<ul>\n<li><strong>明确目标</strong>：告诉模型你要什么，而不是你不要什么</li>\n<li><strong>提供上下文</strong>：背景信息越充分，回答越准确</li>\n<li><strong>指定格式</strong>：需要列表就说&quot;用列表&quot;，需要代码就说&quot;用代码&quot;</li>\n<li><strong>给出示例</strong>：Few-shot 示例能显著提升输出质量</li>\n</ul>\n<h2 id=\"常用模式\">常用模式</h2>\n<h3 id=\"角色设定\">角色设定</h3>\n<pre><code>你是一位有 10 年经验的 TypeScript 工程师，请帮我审查以下代码...\n</code></pre><h3 id=\"思维链-chain-of-thought\">思维链（Chain of Thought）</h3>\n<pre><code>请一步一步分析这个问题，先列出你的思考过程，再给出结论。\n</code></pre><h3 id=\"结构化输出\">结构化输出</h3>\n<pre><code>请用以下 JSON 格式返回结果：\n{\n  &quot;title&quot;: &quot;标题&quot;,\n  &quot;summary&quot;: &quot;摘要&quot;,\n  &quot;tags&quot;: [&quot;标签1&quot;, &quot;标签2&quot;]\n}\n</code></pre><h2 id=\"调试技巧\">调试技巧</h2>\n<ul>\n<li>输出不符合预期时，先检查 Prompt 是否有歧义</li>\n<li>复杂任务拆分成多个步骤，分轮对话完成</li>\n<li>用&quot;请重新思考&quot;或&quot;你确定吗&quot;引导模型自我纠错</li>\n</ul>\n<h2 id=\"注意事项\">注意事项</h2>\n<ul>\n<li>避免在 Prompt 中包含敏感信息</li>\n<li>长上下文时把最重要的信息放在开头或结尾</li>\n<li>不同模型对 Prompt 的敏感度不同，需要针对性调整</li>\n</ul>\n"
+}

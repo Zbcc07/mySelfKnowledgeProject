@@ -23,6 +23,81 @@ export interface HeroData {
   metrics: HeroMetric[]
 }
 
+export interface RoadmapItem {
+  title: string
+  detail: string
+  done: boolean
+}
+
+// ─── 生成数据类型 ─────────────────────────────────────────────────────────────
+
+/** 文档列表条目（list.json） */
+export interface DocItem {
+  id: string
+  title: string
+  category: string
+  categoryName: string
+  categoryColor: string
+  tags: string[]
+  date: string
+  summary: string
+  author: string
+  source: string
+}
+
+/** 搜索索引条目（search-index.json） */
+export interface SearchIndexItem {
+  id: string
+  title: string
+  category: string
+  categoryName: string
+  tags: string[]
+  summary: string
+  plainText: string
+}
+
+/** 最近更新条目（recent.json） */
+export interface RecentItem {
+  id: string
+  title: string
+  category: string
+  categoryColor: string
+  date: string
+  summary: string
+  tags: string[]
+}
+
+/** 文档详情（detail/:id.json） */
+export interface DocDetail {
+  id: string
+  title: string
+  category: string
+  categoryName: string
+  categoryColor: string
+  tags: string[]
+  date: string
+  summary: string
+  author: string
+  source: string
+  toc: TocItem[]
+  html: string
+}
+
+export interface TocItem {
+  id: string
+  label: string
+}
+
+/** localStorage 访问记录结构 */
+export interface VisitRecord {
+  count: number
+  lastVisit: number
+}
+
+export type VisitRecords = Record<string, VisitRecord>
+
+// ─── 旧类型保留（兼容现有组件） ───────────────────────────────────────────────
+
 export interface Category {
   id: string
   name: string
@@ -39,12 +114,6 @@ export interface UpdateItem {
   summary: string
 }
 
-export interface RoadmapItem {
-  title: string
-  detail: string
-  done: boolean
-}
-
 export interface HomeData {
   nav: NavItem[]
   hero: HeroData
@@ -53,11 +122,6 @@ export interface HomeData {
   sidebarPanel: { title: string; description: string }
   updates: UpdateItem[]
   roadmap: RoadmapItem[]
-}
-
-export interface TocItem {
-  id: string
-  label: string
 }
 
 export interface ArticleSection {

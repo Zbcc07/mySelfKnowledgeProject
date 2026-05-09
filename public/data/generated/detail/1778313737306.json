@@ -1,0 +1,43 @@
+{
+  "id": "1778313737306",
+  "title": "Node.js Stream 使用整理",
+  "category": "backend",
+  "categoryName": "后端",
+  "categoryColor": "coral",
+  "tags": [
+    "Node.js",
+    "Stream",
+    "性能"
+  ],
+  "date": "2026-05-07",
+  "summary": "整理 Node.js Stream 的核心概念和常见使用场景，避免大文件处理时的内存问题。",
+  "author": "Sunny",
+  "source": "",
+  "toc": [
+    {
+      "id": "为什么用-stream",
+      "label": "为什么用 Stream"
+    },
+    {
+      "id": "四种-stream-类型",
+      "label": "四种 Stream 类型"
+    },
+    {
+      "id": "常见用法",
+      "label": "常见用法"
+    },
+    {
+      "id": "读取文件",
+      "label": "读取文件"
+    },
+    {
+      "id": "pipe-管道",
+      "label": "pipe 管道"
+    },
+    {
+      "id": "注意事项",
+      "label": "注意事项"
+    }
+  ],
+  "html": "<h2 id=\"为什么用-stream\">为什么用 Stream</h2>\n<p>处理大文件时，一次性读入内存会导致内存溢出。Stream 以分块方式处理数据，内存占用稳定。</p>\n<h2 id=\"四种-stream-类型\">四种 Stream 类型</h2>\n<table>\n<thead>\n<tr>\n<th>类型</th>\n<th>说明</th>\n</tr>\n</thead>\n<tbody><tr>\n<td>Readable</td>\n<td>可读流，数据来源</td>\n</tr>\n<tr>\n<td>Writable</td>\n<td>可写流，数据目标</td>\n</tr>\n<tr>\n<td>Duplex</td>\n<td>双工流，可读可写</td>\n</tr>\n<tr>\n<td>Transform</td>\n<td>转换流，读写时可修改数据</td>\n</tr>\n</tbody></table>\n<h2 id=\"常见用法\">常见用法</h2>\n<h3 id=\"读取文件\">读取文件</h3>\n<pre><code class=\"hljs language-js\"><span class=\"hljs-keyword\">import</span> { createReadStream } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">&#x27;fs&#x27;</span>\n\n<span class=\"hljs-keyword\">const</span> stream = <span class=\"hljs-title function_\">createReadStream</span>(<span class=\"hljs-string\">&#x27;./large-file.txt&#x27;</span>, { <span class=\"hljs-attr\">encoding</span>: <span class=\"hljs-string\">&#x27;utf8&#x27;</span> })\n\nstream.<span class=\"hljs-title function_\">on</span>(<span class=\"hljs-string\">&#x27;data&#x27;</span>, <span class=\"hljs-function\">(<span class=\"hljs-params\">chunk</span>) =&gt;</span> {\n  <span class=\"hljs-variable language_\">console</span>.<span class=\"hljs-title function_\">log</span>(<span class=\"hljs-string\">&#x27;收到数据块:&#x27;</span>, chunk.<span class=\"hljs-property\">length</span>)\n})\n\nstream.<span class=\"hljs-title function_\">on</span>(<span class=\"hljs-string\">&#x27;end&#x27;</span>, <span class=\"hljs-function\">() =&gt;</span> {\n  <span class=\"hljs-variable language_\">console</span>.<span class=\"hljs-title function_\">log</span>(<span class=\"hljs-string\">&#x27;读取完成&#x27;</span>)\n})\n</code></pre><h3 id=\"pipe-管道\">pipe 管道</h3>\n<pre><code class=\"hljs language-js\"><span class=\"hljs-keyword\">import</span> { createReadStream, createWriteStream } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">&#x27;fs&#x27;</span>\n\n<span class=\"hljs-title function_\">createReadStream</span>(<span class=\"hljs-string\">&#x27;./input.txt&#x27;</span>)\n  .<span class=\"hljs-title function_\">pipe</span>(<span class=\"hljs-title function_\">createWriteStream</span>(<span class=\"hljs-string\">&#x27;./output.txt&#x27;</span>))\n</code></pre><h2 id=\"注意事项\">注意事项</h2>\n<ul>\n<li>监听 <code>error</code> 事件，否则流出错会抛出未捕获异常</li>\n<li><code>pipe</code> 会自动处理背压（backpressure）</li>\n<li>Node 18+ 推荐使用 <code>stream/promises</code> 的 <code>pipeline</code></li>\n</ul>\n"
+}

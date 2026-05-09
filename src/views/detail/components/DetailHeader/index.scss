@@ -118,6 +118,20 @@
   }
 }
 
+.source-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #b45309;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+
+  &:hover {
+    color: $color-sun-deep;
+  }
+}
+
 @media (max-width: $breakpoint-mobile) {
   .detail-header {
     padding: 28px 20px;

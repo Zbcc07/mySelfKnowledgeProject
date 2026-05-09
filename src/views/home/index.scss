@@ -13,6 +13,12 @@
   align-items: start;
 }
 
+.right-column {
+  display: grid;
+  gap: 28px;
+  align-content: start;
+}
+
 @media (max-width: $breakpoint-tablet) {
   .two-column {
     grid-template-columns: 1fr;

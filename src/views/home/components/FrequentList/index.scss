@@ -1,6 +1,6 @@
 @import '../../../../styles/variables.scss';
 
-.update-column {
+.frequent-column {
   display: grid;
   gap: 18px;
 }
@@ -25,27 +25,16 @@
   text-transform: uppercase;
 }
 
-.update-list {
+.frequent-list {
   display: grid;
-  gap: 12px;
+  gap: 10px;
 }
 
-.update-tags {
+.frequent-card {
   display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 8px;
-
-  span {
-    color: #c06b00;
-    font-size: 12px;
-    font-weight: 600;
-  }
-}
-
-.update-card {
-  display: block;
-  padding: 18px;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
   border: 1px solid $color-border;
   border-radius: $radius-base;
   background: $color-surface;
@@ -59,26 +48,41 @@
     transform: translateY(-2px);
     box-shadow: $shadow-card-hover;
 
-    h3 {
+    .frequent-title {
       color: #b45309;
     }
   }
+}
 
-  > span:first-child {
-    color: #c06b00;
-    font-size: 13px;
-    font-weight: 800;
-  }
+.frequent-icon {
+  display: grid;
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border-radius: $radius-base;
+  background: rgba(245, 158, 11, 0.12);
+  color: $color-sun-deep;
+}
 
-  h3 {
-    margin: 7px 0 6px;
-    font-size: 18px;
-    color: $color-ink-strong;
-    transition: color 180ms ease;
-  }
+.frequent-info {
+  min-width: 0;
+}
 
-  p {
-    margin: 0;
-    color: $color-muted;
-  }
+.frequent-title {
+  overflow: hidden;
+  font-size: 15px;
+  font-weight: 600;
+  color: $color-ink-strong;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color 180ms ease;
+}
+
+.frequent-meta {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+  color: $color-muted;
+  font-size: 12px;
 }
