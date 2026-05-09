@@ -2,7 +2,7 @@
 
 .detail-page {
   display: grid;
-  gap: 24px;
+  gap: 20px;
   min-width: 0;
   width: min(1100px, 100%);
   margin: 0 auto;
@@ -10,8 +10,8 @@
 
 .detail-layout {
   display: grid;
-  grid-template-columns: 260px minmax(0, 1fr);
-  gap: 24px;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 20px;
   align-items: start;
 }
 
@@ -23,8 +23,220 @@
   box-shadow: $shadow-card;
 }
 
+// ─── Markdown 预览区 ────────────────────────────────────────────────────────
+.article-body {
+  padding: 24px clamp(20px, 3vw, 36px);
+  border: 1px solid $color-border;
+  border-radius: $radius-base;
+  background: #ffffff;
+  box-shadow: $shadow-card;
+  min-width: 0;
+}
+
+.markdown-content {
+  color: #3f4b5c;
+  font-size: 15px;
+  line-height: 1.75;
+
+  :deep(h1),
+  :deep(h2),
+  :deep(h3),
+  :deep(h4),
+  :deep(h5),
+  :deep(h6) {
+    color: $color-ink-strong;
+    margin: 1.4em 0 0.5em;
+    line-height: 1.3;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  :deep(h2) {
+    position: relative;
+    padding-left: 12px;
+    font-size: 22px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 5px;
+      bottom: 5px;
+      left: 0;
+      width: 4px;
+      border-radius: 2px;
+      background: linear-gradient(180deg, #ffd86f, #ff9f68);
+    }
+  }
+
+  :deep(h3) {
+    font-size: 17px;
+  }
+
+  :deep(p) {
+    margin: 0 0 0.9em;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  :deep(ul),
+  :deep(ol) {
+    margin: 0.5em 0 0.9em;
+    padding-left: 1.6em;
+  }
+
+  :deep(li) {
+    margin-bottom: 0.35em;
+
+    &::marker {
+      color: $color-sun-deep;
+    }
+  }
+
+  :deep(blockquote) {
+    margin: 1em 0;
+    padding: 12px 16px;
+    border-left: 4px solid $color-sun-deep;
+    border-radius: 0 $radius-base $radius-base 0;
+    background: rgba(245, 158, 11, 0.06);
+    color: $color-muted;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  // 代码块：GitHub 暗色 + macOS 风格红黄绿点
+  :deep(pre) {
+    position: relative;
+    margin: 1.2em 0;
+    padding: 40px 18px 16px;
+    border-radius: $radius-base;
+    background: #0d1117;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.6;
+    box-shadow: 0 6px 18px rgba(13, 17, 23, 0.18);
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 14px;
+      left: 16px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ff5f56;
+      box-shadow:
+        20px 0 0 #ffbd2e,
+        40px 0 0 #27c93f;
+    }
+
+    code,
+    code.hljs {
+      display: block;
+      padding: 0;
+      background: none;
+      color: #e6edf3;
+      font-family: 'Fira Code', 'JetBrains Mono', 'Cascadia Code', Consolas, monospace;
+      font-size: inherit;
+    }
+  }
+
+  // 行内代码
+  :deep(:not(pre) > code) {
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: rgba(245, 158, 11, 0.1);
+    color: #b45309;
+    font-size: 0.9em;
+    font-family: 'Fira Code', 'Cascadia Code', Consolas, monospace;
+  }
+
+  :deep(table) {
+    width: 100%;
+    margin: 1em 0;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  :deep(th) {
+    padding: 10px 14px;
+    border-bottom: 2px solid $color-border;
+    background: rgba(245, 158, 11, 0.06);
+    color: $color-ink-strong;
+    font-weight: 700;
+    text-align: left;
+  }
+
+  :deep(td) {
+    padding: 10px 14px;
+    border-bottom: 1px solid $color-border-soft;
+    color: #3f4b5c;
+  }
+
+  :deep(tr:last-child td) {
+    border-bottom: none;
+  }
+
+  :deep(tr:hover td) {
+    background: rgba(245, 158, 11, 0.04);
+  }
+
+  :deep(a) {
+    color: #b45309;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
+    &:hover {
+      color: $color-sun-deep;
+    }
+  }
+
+  :deep(img) {
+    max-width: 100%;
+    border-radius: $radius-base;
+    box-shadow: $shadow-card;
+  }
+
+  :deep(hr) {
+    margin: 1.6em 0;
+    border: none;
+    border-top: 1px solid $color-border;
+  }
+}
+
+.skeleton-header {
+  padding: 24px;
+  border: 1px solid $color-border;
+  border-radius: $radius-base;
+  background: $color-surface;
+}
+
 @media (max-width: $breakpoint-tablet) {
   .detail-layout {
     grid-template-columns: 1fr;
+  }
+}
+
+.detail-backtop {
+  :deep(.el-backtop) {
+    width: 96px;
+    height: 96px;
+    background: transparent;
+    color: rgb(255, 204, 109);
+    border: 0;
+    box-shadow: none;
+    transition: transform 180ms ease, color 180ms ease;
+  }
+
+  &:hover {
+    :deep(.el-backtop) {
+      transform: translateY(-3px);
+      color: #b45309;
+    }
   }
 }

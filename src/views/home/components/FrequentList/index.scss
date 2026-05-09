@@ -2,7 +2,7 @@
 
 .frequent-column {
   display: grid;
-  gap: 18px;
+  gap: 12px;
 }
 
 .block-heading {
@@ -34,7 +34,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 14px 16px;
+  padding: 10px 14px;
   border: 1px solid $color-border;
   border-radius: $radius-base;
   background: $color-surface;

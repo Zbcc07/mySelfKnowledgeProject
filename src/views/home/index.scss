@@ -2,20 +2,20 @@
 
 .home-page {
   display: grid;
-  gap: 28px;
+  gap: 20px;
   min-width: 0;
 }
 
 .two-column {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 380px;
-  gap: 28px;
-  align-items: start;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 20px;
+  align-items: stretch;
 }
 
 .right-column {
   display: grid;
-  gap: 28px;
+  gap: 20px;
   align-content: start;
 }
 

@@ -27,8 +27,8 @@
   ],
   "tags": ["Vue3", "TypeScript", "Docker", "OpenAI", "PostgreSQL", "Git"],
   "sidebarPanel": {
-    "title": "整理进度",
-    "description": "当前首页原型已就绪，下一步可以接入 Markdown 文档和静态搜索。"
+    "title": "未开发区域",
+    "description": "该区域暂时保留，等待后续增加功能点"
   },
   "updates": [
     {
@@ -54,8 +54,8 @@
     }
   ],
   "roadmap": [
-    { "title": "首页与导航框架", "detail": "搭好顶部导航、侧边栏和首页内容区。", "done": true },
-    { "title": "Markdown 文档接入", "detail": "把技术资料按目录转成可浏览页面。", "done": false },
-    { "title": "全文搜索", "detail": "使用 Pagefind 为静态站生成搜索索引。", "done": false }
+    { "title": "上传 Markdown 文档", "detail": "把整理好的笔记放进 docs 对应分类目录，提交后会自动进入构建流程。", "done": true, "icon": "FileUp" },
+    { "title": "AI 格式化整理", "detail": "按提示词规范补齐 frontmatter 的标题、摘要、标签，统一风格，提升可检索性。", "done": true, "icon": "Wand2" },
+    { "title": "发布 GitHub Pages 预览", "detail": "推送到仓库后由 Actions 自动生成数据并部署，几分钟内即可在线预览。", "done": true, "icon": "Rocket" }
   ]
 }

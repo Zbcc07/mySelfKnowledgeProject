@@ -13,6 +13,21 @@
     "plainText": "核心概念\r\n\r\nVue3 的响应式系统基于 ES Proxy 实现，相比 Vue2 的 Object.defineProperty 有更完整的拦截能力。\r\n\r\n常用 API\r\n\r\nref\r\n\r\n适合基本类型和需要整体替换的对象。\r\n\r\n\r\n\r\nreactive\r\n\r\n适合稳定结构的对象，访问时不需要 。\r\n\r\n\r\n\r\ncomputed\r\n\r\n派生数据优先用 computed，避免手动同步。\r\n\r\n\r\n\r\n注意事项\r\n\r\n- 解构 reactive 对象会丢失响应性，需要用 \r\n-  在模板中自动解包，不需要写 \r\n- 避免在  中直接修改被监听的值，容易造成无限循环"
   },
   {
+    "id": "1778320236288",
+    "title": "Java 后端核心技术栈整理",
+    "category": "backend",
+    "categoryName": "后端",
+    "tags": [
+      "Java",
+      "Spring Boot",
+      "Maven",
+      "Nginx",
+      "Redis"
+    ],
+    "summary": "梳理 Java 后端开发常用的核心组件（JDK、Maven、Spring Boot、Nginx、Redis）与学习路径，帮助建立完整知识体系。",
+    "plainText": "核心技术组件\r\n\r\nJDK (Java Development Kit)\r\n\r\nJava 开发与运行的基石，提供编译、运行环境以及基础工具链。\r\n\r\n- 包含：JRE、编译器、调试工具、API 文档\r\n- 常用长期支持版本：Java 8 / 11 / 17\r\n- 没有 JDK，Java 程序无法编译和运行\r\n\r\nMaven\r\n\r\n项目构建与依赖管理工具，核心配置文件为 。\r\n\r\n- 自动化依赖管理\r\n- 标准化项目结构\r\n- 项目构建与打包\r\n- 多模块项目管理\r\n\r\n解决了\"Jar 包地狱\"，统一了构建流程。\r\n\r\nSpring Boot\r\n\r\nJava 企业级应用的主流开发框架。\r\n\r\n- 自动配置，减少 XML 配置\r\n- 内嵌 Web 服务器（Tomcat / Jetty）\r\n- 提供生产就绪功能（监控、健康检查等）\r\n- 丰富的 Starter 依赖\r\n\r\n常用模块：\r\n\r\n 模块  作用 \r\n------------\r\n Spring MVC  Web 层 \r\n Spring Data  数据访问 \r\n Spring Security  安全认证 \r\n Spring Cloud  分布式系统 \r\n\r\nNginx\r\n\r\n高性能 Web 服务器与反向代理。\r\n\r\n- 反向代理与负载均衡\r\n- 静态资源服务\r\n- SSL/TLS 终端\r\n- 请求缓存与限流\r\n\r\n典型场景：多服务负载均衡、静态资源加速、API 网关。\r\n\r\nRedis\r\n\r\n高性能内存数据存储。\r\n\r\n- 缓存热点数据\r\n- 会话（Session）存储\r\n- 消息队列\r\n- 分布式锁\r\n\r\n优势是毫秒级响应并支持丰富的数据结构。\r\n\r\n为什么需要这些技术\r\n\r\n\r\n\r\n学习路径建议\r\n\r\n1. 基础阶段\r\n\r\n- 学习 Java 基础 + JDK\r\n- 学习 Maven 的基本使用\r\n\r\n2. 框架阶段\r\n\r\n- 学习 Spring Boot\r\n- 学习数据库（MySQL）和缓存（Redis）\r\n\r\n3. 部署阶段\r\n\r\n- 学习 Linux 基础\r\n- 学习 Nginx 配置\r\n- 学习 Docker 容器化\r\n\r\n4. 进阶阶段\r\n\r\n- 微服务（Spring Cloud）\r\n- 消息队列（Kafka / RabbitMQ）\r\n- 容器编排（Kubernetes）"
+  },
+  {
     "id": "1778313737608",
     "title": "Prompt Engineering 实践整理",
     "category": "ai",

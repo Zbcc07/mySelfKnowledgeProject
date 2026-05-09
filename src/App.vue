@@ -38,7 +38,7 @@ onMounted(async () => {
 
 <template>
   <div class="app-shell">
-    <AppTopbar :nav-items="homeData.nav" />
+    <AppTopbar />
 
     <div class="layout" :class="{ 'layout--full': !showSidebar }">
       <AppSidebar
@@ -68,10 +68,10 @@ onMounted(async () => {
 .layout {
   display: grid;
   grid-template-columns: 280px minmax(0, 1fr);
-  gap: 28px;
+  gap: 24px;
   width: min(1460px, 100%);
   margin: 0 auto;
-  padding: 28px 32px 56px;
+  padding: 20px 32px 32px;
 
   &--full {
     grid-template-columns: minmax(0, 1fr);
@@ -80,7 +80,7 @@ onMounted(async () => {
 
 .content {
   display: grid;
-  gap: 28px;
+  gap: 20px;
   min-width: 0;
 }
 

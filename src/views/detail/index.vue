@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { ElEmpty, ElSkeleton } from 'element-plus'
+import { ElEmpty, ElSkeleton, ElBacktop } from 'element-plus'
+import { Rocket } from 'lucide-vue-next'
 import DetailHeader from './components/DetailHeader/index.vue'
 import TocNav from './components/TocNav/index.vue'
 import type { DocDetail, TocItem } from '../../types/content'
 import { loadDocDetail } from '../../utils/dataLoader'
-import { recordVisit } from '../../utils/visitRecord'
+import { recordVisit, recordTagVisit } from '../../utils/visitRecord'
 
 const route = useRoute()
 const articleId = computed(() => String(route.params.id ?? ''))
@@ -22,6 +23,7 @@ async function fetchArticle(id: string) {
   try {
     article.value = await loadDocDetail(id)
     recordVisit(id)
+    recordTagVisit(id, article.value.tags)
   } catch {
     notFound.value = true
   } finally {
@@ -117,6 +119,11 @@ function handleTocSelect(id: string) {
         </router-link>
       </el-empty>
     </div>
+
+    <!-- 回到顶部 -->
+    <el-backtop :right="128" :bottom="48" :visibility-height="200" class="detail-backtop">
+      <Rocket :size="28" :stroke-width="1.8" />
+    </el-backtop>
   </div>
 </template>
 

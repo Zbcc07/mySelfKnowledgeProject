@@ -16,6 +16,24 @@
     "source": ""
   },
   {
+    "id": "1778320236288",
+    "title": "Java 后端核心技术栈整理",
+    "category": "backend",
+    "categoryName": "后端",
+    "categoryColor": "coral",
+    "tags": [
+      "Java",
+      "Spring Boot",
+      "Maven",
+      "Nginx",
+      "Redis"
+    ],
+    "date": "2026-05-09",
+    "summary": "梳理 Java 后端开发常用的核心组件（JDK、Maven、Spring Boot、Nginx、Redis）与学习路径，帮助建立完整知识体系。",
+    "author": "Sunny",
+    "source": ""
+  },
+  {
     "id": "1778313737608",
     "title": "Prompt Engineering 实践整理",
     "category": "ai",

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ArrowLeft, Calendar, ExternalLink, User } from 'lucide-vue-next'
+import { ArrowLeft, Calendar, ExternalLink } from 'lucide-vue-next'
 import { useRouter } from 'vue-router'
 import type { DocDetail } from '../../../../types/content'
 
@@ -20,20 +20,23 @@ function goBack() {
 
 <template>
   <header class="detail-header" :class="`tone-${article.categoryColor}`">
-    <button type="button" class="back-button" @click="goBack">
-      <ArrowLeft :size="16" />
-      <span>返回</span>
-    </button>
+    <div class="header-top">
+      <button type="button" class="back-button" @click="goBack">
+        <ArrowLeft :size="16" />
+        <span>返回</span>
+      </button>
+      <span class="badge">{{ article.categoryName }}</span>
+    </div>
 
-    <span class="badge">{{ article.categoryName }}</span>
-    <h1 class="title">{{ article.title }}</h1>
+    <div class="title-row">
+      <h1 class="title">{{ article.title }}</h1>
+      <div v-if="article.tags.length > 0" class="tags">
+        <span v-for="tag in article.tags" :key="tag">#{{ tag }}</span>
+      </div>
+    </div>
     <p class="summary">{{ article.summary }}</p>
 
     <div class="meta">
-      <span v-if="article.author">
-        <User :size="14" />
-        {{ article.author }}
-      </span>
       <span>
         <Calendar :size="14" />
         {{ article.date }}
@@ -48,10 +51,6 @@ function goBack() {
         <ExternalLink :size="14" />
         查看来源
       </a>
-    </div>
-
-    <div v-if="article.tags.length > 0" class="tags">
-      <span v-for="tag in article.tags" :key="tag">#{{ tag }}</span>
     </div>
   </header>
 </template>

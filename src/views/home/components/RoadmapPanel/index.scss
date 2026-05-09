@@ -1,7 +1,7 @@
 @import '../../../../styles/variables.scss';
 
 .roadmap-panel {
-  padding: 20px;
+  padding: 16px 18px;
   border: 1px solid $color-border;
   border-radius: $radius-base;
   background: $color-surface;
@@ -34,30 +34,72 @@
 
 .roadmap-list {
   display: grid;
-  gap: 16px;
-  margin: 16px 0 0;
+  gap: 8px;
+  margin: 12px 0 0;
   padding: 0;
   list-style: none;
+}
 
-  li {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 10px;
-    align-items: start;
-    color: #9aa8b7;
+.step-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: start;
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  border-radius: $radius-base;
+  cursor: default;
+  transition:
+    background 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
 
-    &.done {
-      color: $color-leaf;
+  &:hover {
+    background: #fffaf0;
+    border-color: rgba(245, 158, 11, 0.28);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(179, 117, 22, 0.12);
+
+    .step-icon {
+      background: #fff2bf;
+      color: #b45309;
+      box-shadow: 0 6px 14px rgba(180, 83, 9, 0.18);
+    }
+
+    .step-body strong {
+      color: #b45309;
     }
   }
+}
 
+.step-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #f1f3f6;
+  color: #9aa8b7;
+  transition:
+    background 180ms ease,
+    color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.step-body {
   strong {
+    display: block;
     color: $color-ink-strong;
+    font-size: 15px;
+    transition: color 180ms ease;
   }
 
   p {
     margin: 2px 0 0;
     color: $color-muted;
     font-size: 14px;
+    line-height: 1.55;
   }
 }

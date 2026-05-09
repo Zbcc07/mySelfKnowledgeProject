@@ -3,7 +3,7 @@
 .detail-header {
   position: relative;
   overflow: hidden;
-  padding: 40px clamp(24px, 4vw, 48px);
+  padding: 20px clamp(20px, 3vw, 36px);
   border: 1px solid $color-border;
   border-radius: $radius-base;
   background: $color-surface;
@@ -14,20 +14,26 @@
     position: absolute;
     top: -80px;
     right: -80px;
-    width: 260px;
-    height: 260px;
+    width: 220px;
+    height: 220px;
     border-radius: 50%;
     background: radial-gradient(circle, rgba(255, 216, 111, 0.48), transparent 68%);
     pointer-events: none;
   }
 }
 
+.header-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
 .back-button {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  margin-bottom: 20px;
-  padding: 8px 12px;
+  padding: 6px 10px;
   border: 1px solid $color-border;
   border-radius: $radius-base;
   background: rgba(255, 255, 255, 0.72);
@@ -69,27 +75,35 @@
 .tone-violet .badge { background: rgba(139, 124, 246, 0.18); color: #5846d2; }
 .tone-rose .badge { background: rgba(255, 111, 159, 0.18); color: #b93467; }
 
+.title-row {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 6px 0;
+}
+
 .title {
-  margin: 16px 0 12px;
+  margin: 0;
   color: $color-ink-strong;
-  font-size: clamp(28px, 3.2vw, 40px);
-  line-height: 1.2;
+  font-size: clamp(22px, 2.4vw, 30px);
+  line-height: 1.25;
 }
 
 .summary {
   max-width: 720px;
-  margin: 0 0 20px;
+  margin: 6px 0 10px;
   color: $color-muted;
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: 14px;
+  line-height: 1.55;
 }
 
 .meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 14px;
   color: #536171;
-  font-size: 14px;
+  font-size: 13px;
 
   span {
     display: inline-flex;
@@ -105,11 +119,10 @@
 .tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 20px;
+  gap: 6px;
 
   span {
-    padding: 4px 10px;
+    padding: 3px 8px;
     border: 1px solid $color-border;
     border-radius: $radius-base;
     background: #fffaf0;
@@ -134,10 +147,10 @@
 
 @media (max-width: $breakpoint-mobile) {
   .detail-header {
-    padding: 28px 20px;
+    padding: 16px 18px;
   }
 
   .title {
-    font-size: 26px;
+    font-size: 22px;
   }
 }

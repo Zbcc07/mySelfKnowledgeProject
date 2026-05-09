@@ -1,6 +1,6 @@
 {
   "frontend": 2,
+  "backend": 2,
   "ai": 1,
-  "backend": 1,
   "database": 1
 }

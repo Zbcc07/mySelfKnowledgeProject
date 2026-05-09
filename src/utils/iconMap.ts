@@ -4,12 +4,15 @@ import {
   Code2,
   Database,
   FileSearch,
+  FileUp,
   FolderKanban,
   GitBranch,
   Layers3,
+  Rocket,
   Sparkles,
   Tags,
   TerminalSquare,
+  Wand2,
 } from 'lucide-vue-next'
 import type { Component } from 'vue'
 
@@ -22,12 +25,15 @@ export const iconMap: Record<string, Component> = {
   Code2,
   Database,
   FileSearch,
+  FileUp,
   FolderKanban,
   GitBranch,
   Layers3,
+  Rocket,
   Sparkles,
   Tags,
   TerminalSquare,
+  Wand2,
 }
 
 export function resolveIcon(name?: string): Component | null {

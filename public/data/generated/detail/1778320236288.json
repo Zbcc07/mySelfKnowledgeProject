@@ -1,0 +1,69 @@
+{
+  "id": "1778320236288",
+  "title": "Java 后端核心技术栈整理",
+  "category": "backend",
+  "categoryName": "后端",
+  "categoryColor": "coral",
+  "tags": [
+    "Java",
+    "Spring Boot",
+    "Maven",
+    "Nginx",
+    "Redis"
+  ],
+  "date": "2026-05-09",
+  "summary": "梳理 Java 后端开发常用的核心组件（JDK、Maven、Spring Boot、Nginx、Redis）与学习路径，帮助建立完整知识体系。",
+  "author": "Sunny",
+  "source": "",
+  "toc": [
+    {
+      "id": "核心技术组件",
+      "label": "核心技术组件"
+    },
+    {
+      "id": "jdk-java-development-kit",
+      "label": "JDK (Java Development Kit)"
+    },
+    {
+      "id": "maven",
+      "label": "Maven"
+    },
+    {
+      "id": "spring-boot",
+      "label": "Spring Boot"
+    },
+    {
+      "id": "nginx",
+      "label": "Nginx"
+    },
+    {
+      "id": "redis",
+      "label": "Redis"
+    },
+    {
+      "id": "为什么需要这些技术",
+      "label": "为什么需要这些技术"
+    },
+    {
+      "id": "学习路径建议",
+      "label": "学习路径建议"
+    },
+    {
+      "id": "1-基础阶段",
+      "label": "1. 基础阶段"
+    },
+    {
+      "id": "2-框架阶段",
+      "label": "2. 框架阶段"
+    },
+    {
+      "id": "3-部署阶段",
+      "label": "3. 部署阶段"
+    },
+    {
+      "id": "4-进阶阶段",
+      "label": "4. 进阶阶段"
+    }
+  ],
+  "html": "<h2 id=\"核心技术组件\">核心技术组件</h2>\n<h3 id=\"jdk-java-development-kit\">JDK (Java Development Kit)</h3>\n<p>Java 开发与运行的基石，提供编译、运行环境以及基础工具链。</p>\n<ul>\n<li>包含：JRE、编译器、调试工具、API 文档</li>\n<li>常用长期支持版本：Java 8 / 11 / 17</li>\n<li>没有 JDK，Java 程序无法编译和运行</li>\n</ul>\n<h3 id=\"maven\">Maven</h3>\n<p>项目构建与依赖管理工具，核心配置文件为 <code>pom.xml</code>。</p>\n<ul>\n<li>自动化依赖管理</li>\n<li>标准化项目结构</li>\n<li>项目构建与打包</li>\n<li>多模块项目管理</li>\n</ul>\n<p>解决了&quot;Jar 包地狱&quot;，统一了构建流程。</p>\n<h3 id=\"spring-boot\">Spring Boot</h3>\n<p>Java 企业级应用的主流开发框架。</p>\n<ul>\n<li>自动配置，减少 XML 配置</li>\n<li>内嵌 Web 服务器（Tomcat / Jetty）</li>\n<li>提供生产就绪功能（监控、健康检查等）</li>\n<li>丰富的 Starter 依赖</li>\n</ul>\n<p>常用模块：</p>\n<table>\n<thead>\n<tr>\n<th>模块</th>\n<th>作用</th>\n</tr>\n</thead>\n<tbody><tr>\n<td>Spring MVC</td>\n<td>Web 层</td>\n</tr>\n<tr>\n<td>Spring Data</td>\n<td>数据访问</td>\n</tr>\n<tr>\n<td>Spring Security</td>\n<td>安全认证</td>\n</tr>\n<tr>\n<td>Spring Cloud</td>\n<td>分布式系统</td>\n</tr>\n</tbody></table>\n<h3 id=\"nginx\">Nginx</h3>\n<p>高性能 Web 服务器与反向代理。</p>\n<ul>\n<li>反向代理与负载均衡</li>\n<li>静态资源服务</li>\n<li>SSL/TLS 终端</li>\n<li>请求缓存与限流</li>\n</ul>\n<p>典型场景：多服务负载均衡、静态资源加速、API 网关。</p>\n<h3 id=\"redis\">Redis</h3>\n<p>高性能内存数据存储。</p>\n<ul>\n<li>缓存热点数据</li>\n<li>会话（Session）存储</li>\n<li>消息队列</li>\n<li>分布式锁</li>\n</ul>\n<p>优势是毫秒级响应并支持丰富的数据结构。</p>\n<h2 id=\"为什么需要这些技术\">为什么需要这些技术</h2>\n<p><img src=\"https://app.epoint.com.cn/h5/fileattaches/20260429/1777452619087_4c07bece/Sheet_20260429.png\" alt=\"核心组件关系图\" /></p>\n<h2 id=\"学习路径建议\">学习路径建议</h2>\n<h3 id=\"1-基础阶段\">1. 基础阶段</h3>\n<ul>\n<li>学习 Java 基础 + JDK</li>\n<li>学习 Maven 的基本使用</li>\n</ul>\n<h3 id=\"2-框架阶段\">2. 框架阶段</h3>\n<ul>\n<li>学习 Spring Boot</li>\n<li>学习数据库（MySQL）和缓存（Redis）</li>\n</ul>\n<h3 id=\"3-部署阶段\">3. 部署阶段</h3>\n<ul>\n<li>学习 Linux 基础</li>\n<li>学习 Nginx 配置</li>\n<li>学习 Docker 容器化</li>\n</ul>\n<h3 id=\"4-进阶阶段\">4. 进阶阶段</h3>\n<ul>\n<li>微服务（Spring Cloud）</li>\n<li>消息队列（Kafka / RabbitMQ）</li>\n<li>容器编排（Kubernetes）</li>\n</ul>\n"
+}

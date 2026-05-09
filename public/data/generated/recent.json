@@ -13,6 +13,21 @@
     ]
   },
   {
+    "id": "1778320236288",
+    "title": "Java 后端核心技术栈整理",
+    "category": "后端",
+    "categoryColor": "coral",
+    "date": "2026-05-09",
+    "summary": "梳理 Java 后端开发常用的核心组件（JDK、Maven、Spring Boot、Nginx、Redis）与学习路径，帮助建立完整知识体系。",
+    "tags": [
+      "Java",
+      "Spring Boot",
+      "Maven",
+      "Nginx",
+      "Redis"
+    ]
+  },
+  {
     "id": "1778313737608",
     "title": "Prompt Engineering 实践整理",
     "category": "AI",
@@ -49,19 +64,6 @@
       "Node.js",
       "Stream",
       "性能"
-    ]
-  },
-  {
-    "id": "1778313737281",
-    "title": "MySQL 索引优化笔记",
-    "category": "数据库",
-    "categoryColor": "leaf",
-    "date": "2026-05-06",
-    "summary": "整理 MySQL 索引的基本原理、常见类型和优化建议，帮助排查慢查询问题。",
-    "tags": [
-      "MySQL",
-      "索引",
-      "性能优化"
     ]
   }
 ]

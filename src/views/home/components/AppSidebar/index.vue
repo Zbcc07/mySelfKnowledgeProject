@@ -1,13 +1,53 @@
 <script setup lang="ts">
+import { ref, computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { FolderKanban, Star, Tags } from 'lucide-vue-next'
 import { resolveIcon } from '../../../../utils/iconMap'
-import type { Category } from '../../../../types/content'
+import type { Category, DocItem } from '../../../../types/content'
+import { loadDocList } from '../../../../utils/dataLoader'
+import { useActiveCategory } from '../../../../composables/useActiveCategory'
 
-defineProps<{
+const props = defineProps<{
   categories: Category[]
   tags: string[]
   panel: { title: string; description: string }
 }>()
+
+const router = useRouter()
+const { activeCategoryId, setActiveCategory } = useActiveCategory()
+
+const docList = ref<DocItem[]>([])
+
+/** 标签云最多展示数量，超出用省略号代替 */
+const MAX_VISIBLE_TAGS = 20
+const visibleTags = computed(() => props.tags.slice(0, MAX_VISIBLE_TAGS))
+const hiddenCount = computed(() => Math.max(0, props.tags.length - MAX_VISIBLE_TAGS))
+
+/** 标签 → 首篇包含该标签的文档 id 映射 */
+const tagDocMap = computed<Record<string, string>>(() => {
+  const map: Record<string, string> = {}
+  for (const doc of docList.value) {
+    for (const tag of doc.tags) {
+      if (!map[tag]) map[tag] = doc.id
+    }
+  }
+  return map
+})
+
+function handleTagClick(tag: string) {
+  const docId = tagDocMap.value[tag]
+  if (docId) {
+    router.push({ name: 'detail', params: { id: docId } })
+  }
+}
+
+onMounted(async () => {
+  try {
+    docList.value = await loadDocList()
+  } catch {
+    docList.value = []
+  }
+})
 </script>
 
 <template>
@@ -17,16 +57,19 @@ defineProps<{
         <FolderKanban :size="17" />
         分类
       </div>
-      <a
+      <button
         v-for="category in categories"
-        :key="category.name"
+        :key="category.id"
+        type="button"
         class="side-link"
-        href="/#categories"
+        :class="{ 'is-active': activeCategoryId === category.id }"
+        :aria-pressed="activeCategoryId === category.id"
+        @click="setActiveCategory(category.id)"
       >
         <component :is="resolveIcon(category.icon)" v-if="resolveIcon(category.icon)" :size="17" />
         <span>{{ category.name }}</span>
         <em>{{ category.count }}</em>
-      </a>
+      </button>
     </section>
 
     <section class="sidebar-section">
@@ -35,7 +78,24 @@ defineProps<{
         热门标签
       </div>
       <div class="tag-cloud">
-        <span v-for="tag in tags" :key="tag">{{ tag }}</span>
+        <button
+          v-for="tag in visibleTags"
+          :key="tag"
+          type="button"
+          class="tag-item"
+          :disabled="!tagDocMap[tag]"
+          :title="tagDocMap[tag] ? `查看标签「${tag}」相关文档` : '该标签暂无文档'"
+          @click="handleTagClick(tag)"
+        >
+          {{ tag }}
+        </button>
+        <span
+          v-if="hiddenCount > 0"
+          class="tag-more"
+          :title="`还有 ${hiddenCount} 个标签未展示`"
+        >
+          +{{ hiddenCount }}
+        </span>
       </div>
     </section>
 

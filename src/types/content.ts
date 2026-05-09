@@ -27,6 +27,7 @@ export interface RoadmapItem {
   title: string
   detail: string
   done: boolean
+  icon?: string
 }
 
 // ─── 生成数据类型 ─────────────────────────────────────────────────────────────
