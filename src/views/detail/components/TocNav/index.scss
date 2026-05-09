@@ -1,0 +1,60 @@
+@import '../../../../styles/variables.scss';
+
+.toc-nav {
+  position: sticky;
+  top: 96px;
+  padding: 20px;
+  border: 1px solid $color-border;
+  border-radius: $radius-base;
+  background: $color-surface;
+  box-shadow: $shadow-card;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  color: #8a5a08;
+  font-weight: 800;
+}
+
+.toc-list {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  a {
+    display: block;
+    padding: 8px 10px;
+    border-left: 2px solid transparent;
+    border-radius: 0 $radius-base $radius-base 0;
+    color: #4b5c70;
+    font-size: 14px;
+    line-height: 1.5;
+    transition:
+      background 180ms ease,
+      color 180ms ease,
+      border-color 180ms ease;
+
+    &:hover {
+      background: #fff3c4;
+      color: #b45309;
+    }
+
+    &.active {
+      border-left-color: $color-sun-deep;
+      background: #fff7da;
+      color: #b45309;
+      font-weight: 700;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-tablet) {
+  .toc-nav {
+    position: static;
+  }
+}

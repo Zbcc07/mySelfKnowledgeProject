@@ -1,0 +1,61 @@
+{
+  "nav": [
+    { "label": "首页", "href": "/" },
+    { "label": "分类", "href": "/#categories" },
+    { "label": "最近更新", "href": "/#updates" },
+    { "label": "整理路线", "href": "/#roadmap" }
+  ],
+  "hero": {
+    "eyebrow": "把技术资料变成可持续生长的知识花园",
+    "title": "让每一份技术文档都晒得到太阳。",
+    "description": "用清晰分类、快速搜索和持续更新，把零散收藏整理成真正能复用的个人技术知识库。",
+    "primaryAction": { "label": "开始浏览", "href": "#categories" },
+    "secondaryAction": { "label": "查看整理路线", "href": "#roadmap" },
+    "metrics": [
+      { "key": "main", "icon": "BookOpen", "label": "资料总量", "value": "110+" },
+      { "key": "blue", "icon": "FileSearch", "label": "搜索索引", "value": "Ready" },
+      { "key": "green", "icon": "GitBranch", "label": "自动发布", "value": "Actions" }
+    ]
+  },
+  "categories": [
+    { "id": "frontend", "name": "前端工程", "count": 28, "color": "sun", "icon": "Code2" },
+    { "id": "backend", "name": "后端服务", "count": 19, "color": "coral", "icon": "TerminalSquare" },
+    { "id": "database", "name": "数据库", "count": 14, "color": "leaf", "icon": "Database" },
+    { "id": "ai", "name": "AI 实践", "count": 22, "color": "sky", "icon": "Sparkles" },
+    { "id": "devops", "name": "部署运维", "count": 16, "color": "violet", "icon": "Boxes" },
+    { "id": "architecture", "name": "架构设计", "count": 11, "color": "rose", "icon": "Layers3" }
+  ],
+  "tags": ["Vue3", "TypeScript", "Docker", "OpenAI", "PostgreSQL", "Git"],
+  "sidebarPanel": {
+    "title": "整理进度",
+    "description": "当前首页原型已就绪，下一步可以接入 Markdown 文档和静态搜索。"
+  },
+  "updates": [
+    {
+      "id": "vue3-composition-notes",
+      "title": "Vue3 组合式 API 实战笔记",
+      "category": "前端工程",
+      "date": "2026-05-08",
+      "summary": "整理常用响应式模式、组件拆分和 TypeScript 类型组织。"
+    },
+    {
+      "id": "github-pages-deploy",
+      "title": "GitHub Pages 自动部署流程",
+      "category": "部署运维",
+      "date": "2026-05-06",
+      "summary": "记录 Actions 配置、静态资源路径和自定义域名注意事项。"
+    },
+    {
+      "id": "tag-system-design",
+      "title": "技术资料的标签体系设计",
+      "category": "架构设计",
+      "date": "2026-05-02",
+      "summary": "用分类解决导航，用标签解决横向关联，避免资料越攒越乱。"
+    }
+  ],
+  "roadmap": [
+    { "title": "首页与导航框架", "detail": "搭好顶部导航、侧边栏和首页内容区。", "done": true },
+    { "title": "Markdown 文档接入", "detail": "把技术资料按目录转成可浏览页面。", "done": false },
+    { "title": "全文搜索", "detail": "使用 Pagefind 为静态站生成搜索索引。", "done": false }
+  ]
+}

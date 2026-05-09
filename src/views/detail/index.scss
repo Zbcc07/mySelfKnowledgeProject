@@ -1,0 +1,30 @@
+@import '../../styles/variables.scss';
+
+.detail-page {
+  display: grid;
+  gap: 24px;
+  min-width: 0;
+  width: min(1100px, 100%);
+  margin: 0 auto;
+}
+
+.detail-layout {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.empty-wrap {
+  padding: 48px 24px;
+  border: 1px solid $color-border;
+  border-radius: $radius-base;
+  background: $color-surface;
+  box-shadow: $shadow-card;
+}
+
+@media (max-width: $breakpoint-tablet) {
+  .detail-layout {
+    grid-template-columns: 1fr;
+  }
+}
