@@ -8,10 +8,14 @@
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
-import matter from 'gray-matter'
+import { createRequire } from 'module'
 import { Marked } from 'marked'
 import { markedHighlight } from 'marked-highlight'
 import hljs from 'highlight.js'
+
+// gray-matter 是 CJS 包，在部分 Node 20 ESM 解析下会踩坑，显式用 require 加载
+const require = createRequire(import.meta.url)
+const matter = require('gray-matter')
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.resolve(__dirname, '..')
