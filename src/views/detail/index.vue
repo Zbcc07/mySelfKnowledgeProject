@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { ElEmpty, ElSkeleton, ElBacktop } from 'element-plus'
-import { Rocket } from 'lucide-vue-next'
 import DetailHeader from './components/DetailHeader/index.vue'
 import TocNav from './components/TocNav/index.vue'
 import type { DocDetail, TocItem } from '../../types/content'
@@ -121,12 +119,19 @@ function handleTocSelect(id: string) {
     </div>
 
     <!-- 回到顶部 -->
-    <el-backtop :right="128" :bottom="48" :visibility-height="200" class="detail-backtop">
-      <Rocket :size="28" :stroke-width="1.8" />
+    <el-backtop :right="120" :bottom="120" :visibility-height="200" class="detail-backtop">
+      <!-- <Rocket :size="28" :stroke-width="1.8" /> -->
+       <img class="usagi" src="/public/usagi2.jpg" alt="">
     </el-backtop>
   </div>
 </template>
 
 <style scoped lang="scss">
 @import './index.scss';
+.usagi{
+  width: 80px;
+  height: 80px;
+  border-radius: 15px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
 </style>

@@ -2,7 +2,6 @@
 import { ref, computed, nextTick, onMounted, onBeforeUnmount, watch } from 'vue'
 import { RouterLink, useRouter } from 'vue-router'
 import { CloudSun, Rocket, Search, X } from 'lucide-vue-next'
-import { ElEmpty } from 'element-plus'
 import type { SearchIndexItem } from '../../../../types/content'
 import { loadSearchIndex } from '../../../../utils/dataLoader'
 

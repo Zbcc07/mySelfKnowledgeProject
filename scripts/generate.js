@@ -375,10 +375,74 @@ async function main() {
     fs.writeFileSync(path.join(detailOutDir, `${docId}.json`), JSON.stringify(detail, null, 2), 'utf8')
   }
 
+  // sitemap.xml & robots.txt（供搜索引擎收录）
+  writeSitemap(docList)
+
   console.log(`\n✅ 数据生成完成`)
   console.log(`   文档总数: ${docList.length}`)
   console.log(`   标签总数: ${tagSet.size}`)
   console.log(`   输出目录: public/data/generated/`)
+}
+
+/**
+ * 生成 sitemap.xml 和 robots.txt，写到 public/ 下
+ * SITE_URL 取自 package.json 的 homepage 或环境变量 SITE_URL；
+ * 未配置时退化为相对路径（搜索引擎抓不到，但不会报错）
+ */
+function writeSitemap(docList) {
+  const publicDir = path.resolve(ROOT, 'public')
+  const pkgPath = path.resolve(ROOT, 'package.json')
+  let siteUrl = process.env.SITE_URL || ''
+  if (!siteUrl && fs.existsSync(pkgPath)) {
+    try {
+      const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'))
+      siteUrl = pkg.homepage || ''
+    } catch {
+      // ignore
+    }
+  }
+  if (!siteUrl) {
+    console.log(`   (未配置 SITE_URL 或 package.json#homepage，跳过 sitemap)`)
+    return
+  }
+
+  // 去掉末尾斜杠
+  const base = siteUrl.replace(/\/$/, '')
+  const today = new Date().toISOString().slice(0, 10)
+
+  // 页面列表：首页（hash 路由无法索引详情，但留一条保证首页被抓）+ 详情页
+  const urls = [
+    { loc: `${base}/`, lastmod: today, changefreq: 'weekly', priority: '1.0' },
+    ...docList.map((d) => ({
+      loc: `${base}/#/detail/${d.id}`,
+      lastmod: d.date,
+      changefreq: 'monthly',
+      priority: '0.7',
+    })),
+  ]
+
+  const xml =
+    `<?xml version="1.0" encoding="UTF-8"?>\n` +
+    `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
+    urls
+      .map(
+        (u) =>
+          `  <url>\n` +
+          `    <loc>${u.loc}</loc>\n` +
+          `    <lastmod>${u.lastmod}</lastmod>\n` +
+          `    <changefreq>${u.changefreq}</changefreq>\n` +
+          `    <priority>${u.priority}</priority>\n` +
+          `  </url>`,
+      )
+      .join('\n') +
+    `\n</urlset>\n`
+
+  fs.writeFileSync(path.join(publicDir, 'sitemap.xml'), xml, 'utf8')
+
+  const robots = `User-agent: *\nAllow: /\nSitemap: ${base}/sitemap.xml\n`
+  fs.writeFileSync(path.join(publicDir, 'robots.txt'), robots, 'utf8')
+
+  console.log(`   sitemap: ${urls.length} 个 URL → public/sitemap.xml`)
 }
 
 main().catch((err) => {

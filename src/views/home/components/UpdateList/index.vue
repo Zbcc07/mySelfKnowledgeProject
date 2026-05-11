@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue'
-import { ElEmpty, ElPagination } from 'element-plus'
 import { RouterLink } from 'vue-router'
 import type { DocItem } from '../../../../types/content'
 import { getCategoryById } from '../../../../config/categories'

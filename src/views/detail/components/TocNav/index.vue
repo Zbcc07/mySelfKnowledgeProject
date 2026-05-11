@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { List } from 'lucide-vue-next'
-import { ElEmpty } from 'element-plus'
 import type { TocItem } from '../../../../types/content'
 
 defineProps<{

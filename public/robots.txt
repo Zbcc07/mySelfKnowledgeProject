@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://zbcc07.github.io/mySelfKnowledgeProject/sitemap.xml

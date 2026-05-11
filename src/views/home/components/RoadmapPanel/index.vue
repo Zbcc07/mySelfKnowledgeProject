@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ElEmpty } from 'element-plus'
 import type { RoadmapItem } from '../../../../types/content'
 import { resolveIcon } from '../../../../utils/iconMap'
 
