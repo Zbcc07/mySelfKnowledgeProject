@@ -167,7 +167,7 @@ onBeforeUnmount(() => {
       </transition>
     </div>
 
-    <a class="publish-button" href="https://pages.github.com/" target="_blank" rel="noreferrer">
+    <a class="publish-button" href="https://zbcc07.github.io/mySelfKnowledgeProject/#/" target="_blank" rel="noreferrer">
       <Rocket :size="18" />
       <span>GitHub Pages</span>
     </a>
