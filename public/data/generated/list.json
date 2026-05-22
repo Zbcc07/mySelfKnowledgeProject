@@ -1,5 +1,129 @@
 [
   {
+    "id": "1779442697363",
+    "title": "动作流 ApplicationTag 关联上下文变量需求",
+    "category": "需求开发",
+    "categoryName": "需求开发",
+    "categoryColor": "purple",
+    "tags": [
+      "需求开发",
+      "动作流",
+      "Java注解",
+      "后端架构",
+      "数据流"
+    ],
+    "date": "2026-05-22",
+    "summary": "从前端开发者视角，梳理动作流设计器中基于 applicationTag 自动追加应用关联数据对象到节点上下文变量列表的需求背景、机制设计与数据流转。",
+    "author": "",
+    "source": ""
+  },
+  {
+    "id": "1779443530293",
+    "title": "常用 SQL 命令速查",
+    "category": "database",
+    "categoryName": "数据库",
+    "categoryColor": "leaf",
+    "tags": [
+      "SQL",
+      "数据库",
+      "MySQL"
+    ],
+    "date": "2026-05-22",
+    "summary": "整理 MySQL 的常用 SQL 命令，涵盖数据库创建、表创建、数据插入与查询等基础操作。",
+    "author": "",
+    "source": ""
+  },
+  {
+    "id": "1779443530534",
+    "title": "Java 后端学习笔记（二）：项目结构与语法入门",
+    "category": "backend",
+    "categoryName": "后端",
+    "categoryColor": "coral",
+    "tags": [
+      "Java",
+      "后端",
+      "Spring Boot",
+      "入门",
+      "语法"
+    ],
+    "date": "2026-05-22",
+    "summary": "从前端开发者视角整理 Java 后端项目的日常操作流程、完整项目结构及各层职责、Java 语法与 JavaScript 对比速览。",
+    "author": "",
+    "source": "https://app.epoint.com.cn/h5/fileattaches/20260509/1778308644107_655b07ea/javaTestProject.zip"
+  },
+  {
+    "id": "1779443530368",
+    "title": "Java 后端学习笔记（一）：环境配置与入门",
+    "category": "backend",
+    "categoryName": "后端",
+    "categoryColor": "coral",
+    "tags": [
+      "Java",
+      "后端",
+      "Spring Boot",
+      "Maven",
+      "环境配置"
+    ],
+    "date": "2026-05-22",
+    "summary": "从前端开发者视角整理 Java 后端入门知识，涵盖 JDK、Maven、MySQL、Nginx 环境配置以及标准 Spring Boot 项目结构。",
+    "author": "",
+    "source": ""
+  },
+  {
+    "id": "1779443529766",
+    "title": "Vue + TS 前端架构 AI 提示词模板",
+    "category": "ai",
+    "categoryName": "AI",
+    "categoryColor": "sky",
+    "tags": [
+      "AI",
+      "提示词",
+      "Vue",
+      "TypeScript",
+      "架构"
+    ],
+    "date": "2026-05-22",
+    "summary": "Vue 架构师的 AI 提示词模板，遵循高内聚低耦合、状态集中、数据驱动等设计原则。",
+    "author": "",
+    "source": ""
+  },
+  {
+    "id": "1779443529787",
+    "title": "AI 长任务上下文管理开发指南",
+    "category": "ai",
+    "categoryName": "AI",
+    "categoryColor": "sky",
+    "tags": [
+      "AI",
+      "上下文管理",
+      "会话管理",
+      "提示词",
+      "开发效率"
+    ],
+    "date": "2026-05-22",
+    "summary": "系统整理 AI 长任务开发中上下文管理的策略，涵盖会话拆分、结构化快照、信息过滤等最佳实践。",
+    "author": "",
+    "source": ""
+  },
+  {
+    "id": "1779443530331",
+    "title": "AI Agents 工具与资源备忘录",
+    "category": "ai",
+    "categoryName": "AI",
+    "categoryColor": "sky",
+    "tags": [
+      "AI",
+      "工具",
+      "IDE",
+      "开发",
+      "资源"
+    ],
+    "date": "2026-05-22",
+    "summary": "整理 AI 开发相关的各类工具平台、AI IDE、VPN 及订阅服务资源链接。",
+    "author": "",
+    "source": ""
+  },
+  {
     "id": "1778313737776",
     "title": "Vue3 响应式系统整理",
     "category": "frontend",

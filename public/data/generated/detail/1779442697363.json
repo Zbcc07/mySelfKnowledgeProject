@@ -1,0 +1,57 @@
+{
+  "id": "1779442697363",
+  "title": "动作流 ApplicationTag 关联上下文变量需求",
+  "category": "需求开发",
+  "categoryName": "需求开发",
+  "categoryColor": "purple",
+  "tags": [
+    "需求开发",
+    "动作流",
+    "Java注解",
+    "后端架构",
+    "数据流"
+  ],
+  "date": "2026-05-22",
+  "summary": "从前端开发者视角，梳理动作流设计器中基于 applicationTag 自动追加应用关联数据对象到节点上下文变量列表的需求背景、机制设计与数据流转。",
+  "author": "",
+  "source": "",
+  "toc": [
+    {
+      "id": "需求概述",
+      "label": "需求概述"
+    },
+    {
+      "id": "核心概念-java-注解-前端装饰器",
+      "label": "核心概念：Java 注解 ≈ 前端装饰器"
+    },
+    {
+      "id": "注解扫描机制-前端自动路由-自动注册",
+      "label": "注解扫描机制 ≈ 前端自动路由/自动注册"
+    },
+    {
+      "id": "整体数据流",
+      "label": "整体数据流"
+    },
+    {
+      "id": "dto-entity-说明",
+      "label": "DTO / Entity 说明"
+    },
+    {
+      "id": "仓库分工",
+      "label": "仓库分工"
+    },
+    {
+      "id": "踩坑记录",
+      "label": "踩坑记录"
+    },
+    {
+      "id": "机制总结",
+      "label": "机制总结"
+    },
+    {
+      "id": "关键词速查",
+      "label": "关键词速查"
+    }
+  ],
+  "html": "<h2 id=\"需求概述\">需求概述</h2>\n<p>在动作流设计器中，根据当前应用的标识（applicationTag），自动将该应用关联的数据对象追加到节点的上下文变量列表里。</p>\n<p>前端类比：类似于在 Vue 中根据路由参数动态注入不同的 <code>provide</code> 数据，让子组件能访问到。</p>\n<h2 id=\"核心概念-java-注解-前端装饰器\">核心概念：Java 注解 ≈ 前端装饰器</h2>\n<table>\n<thead>\n<tr>\n<th>前端 TypeScript 装饰器</th>\n<th>Java 注解</th>\n</tr>\n</thead>\n<tbody><tr>\n<td><code>@Component({ ... })</code></td>\n<td><code>@Component</code></td>\n</tr>\n<tr>\n<td><code>@Injectable()</code></td>\n<td><code>@Service</code></td>\n</tr>\n<tr>\n<td><code>@Input() name: string</code></td>\n<td><code>@RuleCustomFunField</code></td>\n</tr>\n</tbody></table>\n<p>本次涉及两个注解：</p>\n<pre><code class=\"hljs language-java\"><span class=\"hljs-comment\">// 旧注解（已废弃，相当于 deprecated 的老 API）</span>\n<span class=\"hljs-meta\">@RuleCustomImportClass(ruleClassName = &quot;工作流数据&quot;)</span>\n\n<span class=\"hljs-comment\">// 新注解（本次需求引入）</span>\n<span class=\"hljs-meta\">@AppContext(contextName = &quot;短信&quot;, relationAppTag = &quot;ceshishangxiawenaaa&quot;)</span>\n</code></pre><p>前端类比：</p>\n<pre><code class=\"hljs language-ts\"><span class=\"hljs-comment\">// 旧写法</span>\n<span class=\"hljs-meta\">@OldDecorator</span>({ <span class=\"hljs-attr\">label</span>: <span class=\"hljs-string\">&#x27;工作流数据&#x27;</span> })\n<span class=\"hljs-keyword\">class</span> <span class=\"hljs-title class_\">WorkflowProcessData</span> {}\n\n<span class=\"hljs-comment\">// 新写法</span>\n<span class=\"hljs-meta\">@AppContext</span>({ <span class=\"hljs-attr\">label</span>: <span class=\"hljs-string\">&#x27;短信&#x27;</span>, <span class=\"hljs-attr\">appTag</span>: <span class=\"hljs-string\">&#x27;ceshishangxiawenaaa&#x27;</span> })\n<span class=\"hljs-keyword\">class</span> <span class=\"hljs-title class_\">SmsDTO</span> {}\n</code></pre><blockquote>\n<p>注解本身不执行任何逻辑，只是<strong>贴标签</strong>，真正的逻辑在&quot;扫描器&quot;里。</p>\n</blockquote>\n<h2 id=\"注解扫描机制-前端自动路由-自动注册\">注解扫描机制 ≈ 前端自动路由/自动注册</h2>\n<table>\n<thead>\n<tr>\n<th>前端</th>\n<th>后端</th>\n</tr>\n</thead>\n<tbody><tr>\n<td>Vite 的 <code>import.meta.glob()</code> 自动扫描 <code>views/**/*.vue</code></td>\n<td><code>SpringScan.getFitCls()</code> 自动扫描所有带注解的 class</td>\n</tr>\n<tr>\n<td>注册到路由表</td>\n<td>注册到 Map&lt;appTag, 类名列表&gt;</td>\n</tr>\n</tbody></table>\n<p>启动时（<code>FrameActFlowInfoStart.scanContextClasses()</code>）执行流程：</p>\n<pre><code>服务启动\n  │\n  ▼\n扫描所有带 @AppContext 的类\n  │\n  ▼\n按 relationAppTag 分组存入 Map\n  │\n  ▼\nMap = {\n  &quot;ceshishangxiawenaaa&quot;: [&quot;com.epoint.frame.sms.actflow.entity.SmsDTO&quot;],\n  &quot;xmly&quot;:                [&quot;com.epoint.frame.xxx.XxxDTO&quot;],\n  ...\n}\n</code></pre><p>该 Map 是 <code>AppContextScanner</code> 中维护的索引，相当于前端的路由表。</p>\n<h2 id=\"整体数据流\">整体数据流</h2>\n<pre><code>浏览器打开设计器\n  │  URL 里带 applicationTag=ceshishangxiawenaaa\n  │\n  ▼\n前端调用 /getContextInfo 接口\n  │  请求 Header 里有 Referer（带 applicationTag 的页面 URL）\n  │\n  ▼\nController 层（FrameActionFlowDesigerController）\n  │  从 request.getHeader(&quot;referer&quot;) 取出 URL\n  │  把 url 塞进 params 传给 Service\n  │\n  ▼\nService 层（FrameActFlowServiceImpl.getContextInfo）\n  │\n  ├─① 解析节点本身的上下文（原有逻辑，不动）\n  │\n  └─② 新增：resolveApplicationTag(params)\n         │  从 params.url 里提取 applicationTag 参数值\n         │\n         ▼\n       appendContextByApplicationTag(data, &quot;ceshishangxiawenaaa&quot;)\n         │  查 AppContextScanner 的 Map\n         │  找到 SmsDTO\n         │  构建 ContextStruct（variable / des / children）\n         │  追加到 data 数组\n         │\n         ▼\n  返回给前端\n  data: [\n    { variable: &quot;smsDTO&quot;, des: &quot;短信&quot;, children: [...] },\n    ...原有节点上下文...\n  ]\n  │\n  ▼\n前端公式选择器里显示「短信」对象及其字段\n</code></pre><h2 id=\"dto-entity-说明\">DTO / Entity 说明</h2>\n<p>前端类比：<strong>DTO 就是接口返回的数据结构定义，相当于 TypeScript 的 interface / type。</strong></p>\n<pre><code class=\"hljs language-ts\"><span class=\"hljs-comment\">// 前端 TS interface</span>\n<span class=\"hljs-keyword\">interface</span> <span class=\"hljs-title class_\">SmsDTO</span> {\n  <span class=\"hljs-attr\">rowGuid</span>: <span class=\"hljs-built_in\">string</span>   <span class=\"hljs-comment\">// 主键</span>\n  <span class=\"hljs-attr\">content</span>: <span class=\"hljs-built_in\">string</span>   <span class=\"hljs-comment\">// 短信内容</span>\n  <span class=\"hljs-attr\">receiver</span>: <span class=\"hljs-built_in\">string</span>  <span class=\"hljs-comment\">// 接收人</span>\n}\n</code></pre><pre><code class=\"hljs language-java\"><span class=\"hljs-comment\">// 后端 Java DTO</span>\n<span class=\"hljs-meta\">@AppContext(contextName = &quot;短信&quot;, relationAppTag = &quot;ceshishangxiawenaaa&quot;)</span>\n<span class=\"hljs-meta\">@Entity(table = &quot;Sms&quot;, id = {&quot;rowGuid&quot;})</span>\n<span class=\"hljs-keyword\">public</span> <span class=\"hljs-keyword\">class</span> <span class=\"hljs-title class_\">SmsDTO</span> <span class=\"hljs-keyword\">extends</span> <span class=\"hljs-title class_\">BaseEntity</span> {\n\n    <span class=\"hljs-meta\">@RuleCustomFunField(name = &quot;主键&quot;)</span>\n    <span class=\"hljs-keyword\">public</span> String <span class=\"hljs-title function_\">getRowGuid</span><span class=\"hljs-params\">()</span> { ... }\n\n    <span class=\"hljs-meta\">@RuleCustomFunField(name = &quot;短信内容&quot;)</span>\n    <span class=\"hljs-keyword\">public</span> String <span class=\"hljs-title function_\">getContent</span><span class=\"hljs-params\">()</span> { ... }\n\n    <span class=\"hljs-meta\">@RuleCustomFunField(name = &quot;接收人&quot;)</span>\n    <span class=\"hljs-keyword\">public</span> String <span class=\"hljs-title function_\">getReceiver</span><span class=\"hljs-params\">()</span> { ... }\n}\n</code></pre><p><code>@RuleCustomFunField(name = &quot;短信内容&quot;)</code> 告知扫描器该字段的中文显示名，对应前端公式选择器中看到的字段标签。</p>\n<h2 id=\"仓库分工\">仓库分工</h2>\n<pre><code>epoint-rule-parent（核心引擎，相当于 npm 包）\n  └── FrameActFlowServiceImpl   ← 核心逻辑，本次主要改这里\n  └── AppContextScanner         ← 新增，appTag → 类名的索引\n\nevent-center（业务应用，相当于使用该 npm 包的项目）\n  └── FrameActionFlowDesigerController  ← 设计器接口，把 url 传下去\n  └── FrameActFlowDebugController       ← 调试接口，同样补传 url\n  └── SmsDTO                            ← 测试用例（已删除，不提交）\n</code></pre><table>\n<thead>\n<tr>\n<th>角色</th>\n<th>前端类比</th>\n<th>后端对应</th>\n</tr>\n</thead>\n<tbody><tr>\n<td>核心引擎</td>\n<td>发布的 UI 组件库</td>\n<td><code>epoint-rule-parent</code></td>\n</tr>\n<tr>\n<td>业务项目</td>\n<td>使用组件库的业务项目</td>\n<td><code>event-center</code></td>\n</tr>\n<tr>\n<td>发布命令</td>\n<td><code>npm publish</code> 到本地</td>\n<td><code>mvn install</code> 到本地仓库</td>\n</tr>\n</tbody></table>\n<blockquote>\n<p>改完 <code>epoint-rule-parent</code> 要先 <code>mvn install</code>，<code>event-center</code> 才能用到新版本。等价于：改了组件库源码必须重新 <code>npm build</code>，业务项目才能用到新的 dist。</p>\n</blockquote>\n<h2 id=\"踩坑记录\">踩坑记录</h2>\n<table>\n<thead>\n<tr>\n<th>现象</th>\n<th>原因</th>\n<th>前端类比</th>\n</tr>\n</thead>\n<tbody><tr>\n<td><code>des: &quot;&quot;</code> 显示空</td>\n<td><code>FrameActFlowContextStruct.innerBuilder()</code> 只读旧注解，不认 <code>@AppContext.contextName</code></td>\n<td>组件只处理了旧 props，新 props 没接</td>\n</tr>\n<tr>\n<td>改完代码没生效</td>\n<td><code>epoint-rule-api</code> 没 install 到本地 maven 仓库，web 模块还在用旧 jar</td>\n<td>改了组件库源码但没重新 <code>npm build</code>，项目还在用旧的 dist</td>\n</tr>\n<tr>\n<td><code>WorkflowProcessData</code> 干扰测试</td>\n<td>测试时临时加了 <code>relationAppTag</code>，导致旧注解类也被命中</td>\n<td>测试时给旧组件加了 props，影响了测试结果</td>\n</tr>\n</tbody></table>\n<h2 id=\"机制总结\">机制总结</h2>\n<pre><code>@AppContext 注解  →  启动时扫描建索引  →  请求时按 URL 的 appTag 查索引  →  追加到上下文返回给前端\n</code></pre><p>等价的前端伪代码：</p>\n<pre><code class=\"hljs language-ts\"><span class=\"hljs-comment\">// 启动时（main.ts）</span>\n<span class=\"hljs-keyword\">const</span> contextRegistry = <span class=\"hljs-keyword\">new</span> <span class=\"hljs-title class_\">Map</span>&lt;<span class=\"hljs-built_in\">string</span>, <span class=\"hljs-built_in\">any</span>[]&gt;()\n<span class=\"hljs-comment\">// 扫描所有带 @AppContext 的组件，按 appTag 分组注册</span>\ncontextRegistry.<span class=\"hljs-title function_\">set</span>(<span class=\"hljs-string\">&#x27;ceshishangxiawenaaa&#x27;</span>, [<span class=\"hljs-title class_\">SmsDTO</span>])\n\n<span class=\"hljs-comment\">// 请求时（getContextInfo）</span>\n<span class=\"hljs-keyword\">const</span> appTag = <span class=\"hljs-keyword\">new</span> <span class=\"hljs-title function_\">URL</span>(referer).<span class=\"hljs-property\">searchParams</span>.<span class=\"hljs-title function_\">get</span>(<span class=\"hljs-string\">&#x27;applicationTag&#x27;</span>)\n<span class=\"hljs-keyword\">const</span> extraContexts = contextRegistry.<span class=\"hljs-title function_\">get</span>(appTag) ?? []\n<span class=\"hljs-keyword\">return</span> [...nodeContexts, ...extraContexts]\n</code></pre><h2 id=\"关键词速查\">关键词速查</h2>\n<table>\n<thead>\n<tr>\n<th>后端术语</th>\n<th>前端对应理解</th>\n</tr>\n</thead>\n<tbody><tr>\n<td>注解 <code>@AppContext</code></td>\n<td>装饰器，给类贴标签</td>\n</tr>\n<tr>\n<td>注解扫描 <code>SpringScan</code></td>\n<td><code>import.meta.glob()</code> 自动扫描文件</td>\n</tr>\n<tr>\n<td><code>DTO</code></td>\n<td>TypeScript <code>interface</code> / <code>type</code></td>\n</tr>\n<tr>\n<td><code>Entity</code></td>\n<td>对应数据库表的数据模型，类似 ORM 的 Model</td>\n</tr>\n<tr>\n<td><code>Service</code> 层</td>\n<td>业务逻辑层，相当于 Pinia store 里的 action</td>\n</tr>\n<tr>\n<td><code>Controller</code> 层</td>\n<td>路由处理层，相当于 Vue Router 的路由守卫 + 接口入口</td>\n</tr>\n<tr>\n<td><code>mvn install</code></td>\n<td><code>npm build</code> + 发布到本地</td>\n</tr>\n<tr>\n<td><code>git status</code></td>\n<td>同前端，查看工作区改动</td>\n</tr>\n<tr>\n<td><code>Untracked files</code></td>\n<td>新建但未 <code>git add</code> 的文件</td>\n</tr>\n</tbody></table>\n"
+}

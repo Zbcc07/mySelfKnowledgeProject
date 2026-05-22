@@ -1,6 +1,7 @@
 {
-  "frontend": 2,
-  "backend": 2,
-  "ai": 1,
-  "database": 1
+  "需求开发": 1,
+  "database": 2,
+  "backend": 4,
+  "ai": 4,
+  "frontend": 2
 }

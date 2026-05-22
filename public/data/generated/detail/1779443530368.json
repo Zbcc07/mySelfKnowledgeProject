@@ -1,0 +1,121 @@
+{
+  "id": "1779443530368",
+  "title": "Java 后端学习笔记（一）：环境配置与入门",
+  "category": "backend",
+  "categoryName": "后端",
+  "categoryColor": "coral",
+  "tags": [
+    "Java",
+    "后端",
+    "Spring Boot",
+    "Maven",
+    "环境配置"
+  ],
+  "date": "2026-05-22",
+  "summary": "从前端开发者视角整理 Java 后端入门知识，涵盖 JDK、Maven、MySQL、Nginx 环境配置以及标准 Spring Boot 项目结构。",
+  "author": "",
+  "source": "",
+  "toc": [
+    {
+      "id": "环境配置",
+      "label": "环境配置"
+    },
+    {
+      "id": "jdk-配置",
+      "label": "JDK 配置"
+    },
+    {
+      "id": "maven-配置",
+      "label": "Maven 配置"
+    },
+    {
+      "id": "mysql-配置",
+      "label": "MySQL 配置"
+    },
+    {
+      "id": "nginx-配置",
+      "label": "Nginx 配置"
+    },
+    {
+      "id": "idea-配置",
+      "label": "IDEA 配置"
+    },
+    {
+      "id": "每日工作流程",
+      "label": "每日工作流程"
+    },
+    {
+      "id": "开启项目",
+      "label": "开启项目"
+    },
+    {
+      "id": "关闭项目",
+      "label": "关闭项目"
+    },
+    {
+      "id": "后端项目结构",
+      "label": "后端项目结构"
+    },
+    {
+      "id": "各层职责",
+      "label": "各层职责"
+    },
+    {
+      "id": "关于-mysql-是否必要",
+      "label": "关于 MySQL 是否必要"
+    },
+    {
+      "id": "java-语法速览-对比-javascript",
+      "label": "Java 语法速览（对比 JavaScript）"
+    },
+    {
+      "id": "变量声明",
+      "label": "变量声明"
+    },
+    {
+      "id": "函数-方法",
+      "label": "函数（方法）"
+    },
+    {
+      "id": "类",
+      "label": "类"
+    },
+    {
+      "id": "常用注解-spring-boot",
+      "label": "常用注解（Spring Boot）"
+    },
+    {
+      "id": "全栈项目示例",
+      "label": "全栈项目示例"
+    },
+    {
+      "id": "项目路径",
+      "label": "项目路径"
+    },
+    {
+      "id": "后端接口",
+      "label": "后端接口"
+    },
+    {
+      "id": "productcontroller-核心代码",
+      "label": "ProductController 核心代码"
+    },
+    {
+      "id": "前端-ajax-post-调用示例",
+      "label": "前端 Ajax POST 调用示例"
+    },
+    {
+      "id": "启动命令",
+      "label": "启动命令"
+    },
+    {
+      "id": "常见问题排查",
+      "label": "常见问题排查"
+    },
+    {
+      "id": "推荐学习路线",
+      "label": "推荐学习路线"
+    }
+  ],
+  "html": "<h2 id=\"环境配置\">环境配置</h2>\n<h3 id=\"jdk-配置\">JDK 配置</h3>\n<p><strong>安装路径：</strong> <code>D:\\myJAVA\\JDK\\OpenJDK8U-jdk_x64_windows_hotspot_8u312b07\\jdk8u312-b07</code></p>\n<p><strong>环境变量设置：</strong></p>\n<table>\n<thead>\n<tr>\n<th>变量名</th>\n<th>值</th>\n</tr>\n</thead>\n<tbody><tr>\n<td><code>JAVA_HOME</code></td>\n<td><code>D:\\myJAVA\\JDK\\OpenJDK8U-jdk_x64_windows_hotspot_8u312b07\\jdk8u312-b07</code></td>\n</tr>\n<tr>\n<td><code>Path</code></td>\n<td>追加 <code>%JAVA_HOME%\\bin</code></td>\n</tr>\n</tbody></table>\n<p><strong>验证命令：</strong></p>\n<pre><code class=\"hljs language-powershell\">java <span class=\"hljs-literal\">-version</span>\njavac <span class=\"hljs-literal\">-version</span>\n</code></pre><blockquote>\n<p>注意：<code>java -v</code> 是错误命令，正确是 <code>java -version</code>。\n<code>CLASSPATH</code> 环境变量在 JDK 5 以后无需手动配置。</p>\n</blockquote>\n<h3 id=\"maven-配置\">Maven 配置</h3>\n<p><strong>安装路径：</strong> <code>D:\\myJAVA\\Maven\\apache-maven-3.9.7-bin\\apache-maven-3.9.7</code></p>\n<p><strong>环境变量设置：</strong></p>\n<table>\n<thead>\n<tr>\n<th>变量名</th>\n<th>值</th>\n</tr>\n</thead>\n<tbody><tr>\n<td><code>MAVEN_HOME</code></td>\n<td><code>D:\\myJAVA\\Maven\\apache-maven-3.9.7-bin\\apache-maven-3.9.7</code></td>\n</tr>\n<tr>\n<td><code>M2_HOME</code></td>\n<td><code>D:\\myJAVA\\Maven\\apache-maven-3.9.7-bin\\apache-maven-3.9.7</code></td>\n</tr>\n<tr>\n<td><code>Path</code></td>\n<td>追加 <code>%MAVEN_HOME%\\bin</code></td>\n</tr>\n</tbody></table>\n<p><strong>验证命令：</strong></p>\n<pre><code class=\"hljs language-powershell\">mvn <span class=\"hljs-literal\">-version</span>\n</code></pre><h3 id=\"mysql-配置\">MySQL 配置</h3>\n<p><strong>安装路径：</strong> <code>D:\\myJAVA\\mySQL\\mysql-5.7.44-winx64</code></p>\n<p><strong>环境变量设置：</strong></p>\n<table>\n<thead>\n<tr>\n<th>变量名</th>\n<th>值</th>\n</tr>\n</thead>\n<tbody><tr>\n<td><code>MYSQL_HOME</code></td>\n<td><code>D:\\myJAVA\\mySQL\\mysql-5.7.44-winx64</code></td>\n</tr>\n<tr>\n<td><code>Path</code></td>\n<td>追加 <code>%MYSQL_HOME%\\bin</code></td>\n</tr>\n</tbody></table>\n<p><strong>配置文件</strong> <code>my.ini</code> 关键内容：</p>\n<pre><code class=\"hljs language-ini\"><span class=\"hljs-section\">[mysqld]</span>\n<span class=\"hljs-attr\">port</span>=<span class=\"hljs-number\">3306</span>\n<span class=\"hljs-attr\">character-set-server</span>=utf8mb4\n\n<span class=\"hljs-section\">[client]</span>\n<span class=\"hljs-attr\">default-character-set</span>=utf8mb4\n</code></pre><p><strong>默认账号：</strong> root / root（端口 3306）</p>\n<p><strong>常用命令：</strong></p>\n<pre><code class=\"hljs language-powershell\"><span class=\"hljs-comment\"># 启动服务</span>\nnet <span class=\"hljs-built_in\">start</span> MySQL57\n\n<span class=\"hljs-comment\"># 停止服务</span>\nnet stop MySQL57\n\n<span class=\"hljs-comment\"># 登录数据库</span>\nmysql <span class=\"hljs-literal\">-u</span> root <span class=\"hljs-literal\">-p</span>\n</code></pre><h3 id=\"nginx-配置\">Nginx 配置</h3>\n<p><strong>安装路径：</strong> <code>D:\\myJAVA\\nGinx\\nginx-1.28.1-20260108\\nginx-1.28.1</code></p>\n<p><strong>配置文件</strong> <code>conf\\nginx.conf</code> 关键内容：</p>\n<pre><code class=\"hljs language-nginx\"><span class=\"hljs-section\">upstream</span> epoint-web {\n    <span class=\"hljs-attribute\">server</span> <span class=\"hljs-number\">127.0.0.1:8080</span>;\n}\n\n<span class=\"hljs-section\">server</span> {\n    <span class=\"hljs-attribute\">listen</span> <span class=\"hljs-number\">8897</span>;\n    <span class=\"hljs-section\">location</span> / {\n        <span class=\"hljs-attribute\">proxy_pass</span> http://epoint-web;\n    }\n}\n</code></pre><p><strong>常用命令（在 Nginx 目录下执行）：</strong></p>\n<pre><code class=\"hljs language-powershell\"><span class=\"hljs-comment\"># 启动</span>\n.\\nginx.exe\n\n<span class=\"hljs-comment\"># 重载配置（不停服）</span>\n.\\nginx.exe <span class=\"hljs-literal\">-s</span> reload\n\n<span class=\"hljs-comment\"># 停止</span>\n.\\nginx.exe <span class=\"hljs-literal\">-s</span> stop\n</code></pre><h3 id=\"idea-配置\">IDEA 配置</h3>\n<p><strong>配置文件路径：</strong> <code>C:\\Users\\25782\\AppData\\Roaming\\JetBrains\\IntelliJIdea2026.1\\options\\</code></p>\n<table>\n<thead>\n<tr>\n<th>文件</th>\n<th>作用</th>\n</tr>\n</thead>\n<tbody><tr>\n<td><code>maven.xml</code></td>\n<td>指向 Maven 安装路径</td>\n</tr>\n<tr>\n<td><code>project.default.xml</code></td>\n<td>默认 SDK 设为 temurin-1.8（JDK 8）</td>\n</tr>\n</tbody></table>\n<h2 id=\"每日工作流程\">每日工作流程</h2>\n<h3 id=\"开启项目\">开启项目</h3>\n<ol>\n<li><p><strong>启动 MySQL 服务</strong>（如果项目用到数据库）</p>\n<pre><code class=\"hljs language-powershell\">net <span class=\"hljs-built_in\">start</span> MySQL57\n</code></pre></li>\n<li><p><strong>用 IDEA 打开项目</strong>：打开 IDEA → <code>File</code> → <code>Open</code> → 选择项目目录</p>\n</li>\n<li><p><strong>启动后端服务</strong>：找到主类（含 <code>@SpringBootApplication</code> 注解），点击左侧绿色三角按钮运行，或右键 → <code>Run</code></p>\n</li>\n<li><p><strong>启动前端</strong>：如果是静态页面，直接用浏览器打开 <code>index.html</code></p>\n</li>\n</ol>\n<h3 id=\"关闭项目\">关闭项目</h3>\n<ol>\n<li>IDEA 中点击红色停止按钮停止后端服务</li>\n<li>关闭 IDEA</li>\n<li>如需停止 MySQL：<code>net stop MySQL57</code></li>\n</ol>\n<h2 id=\"后端项目结构\">后端项目结构</h2>\n<p>一个标准 Spring Boot 项目的目录结构：</p>\n<pre><code>my-project/\n├── src/\n│   ├── main/\n│   │   ├── java/\n│   │   │   └── com/example/myproject/\n│   │   │       ├── MyProjectApplication.java   # 启动类\n│   │   │       ├── controller/                 # 接收请求，返回响应\n│   │   │       │   └── ProductController.java\n│   │   │       ├── service/                    # 业务逻辑层\n│   │   │       │   ├── ProductService.java     # 接口\n│   │   │       │   └── ProductServiceImpl.java # 实现\n│   │   │       ├── entity/                     # 数据库实体类（对应表结构）\n│   │   │       │   └── Product.java\n│   │   │       └── repository/                 # 数据库操作层（DAO）\n│   │   │           └── ProductRepository.java\n│   │   └── resources/\n│   │       ├── application.properties          # 配置文件（端口、数据库连接等）\n│   │       └── static/                         # 静态资源（前端文件）\n│   │           ├── index.html\n│   │           └── app.js\n│   └── test/                                   # 单元测试\n└── pom.xml                                     # Maven 依赖配置\n</code></pre><h3 id=\"各层职责\">各层职责</h3>\n<table>\n<thead>\n<tr>\n<th>层</th>\n<th>注解</th>\n<th>职责</th>\n</tr>\n</thead>\n<tbody><tr>\n<td>Controller</td>\n<td><code>@RestController</code></td>\n<td>接收 HTTP 请求，调用 Service，返回 JSON</td>\n</tr>\n<tr>\n<td>Service</td>\n<td><code>@Service</code></td>\n<td>处理业务逻辑</td>\n</tr>\n<tr>\n<td>Repository</td>\n<td><code>@Repository</code></td>\n<td>操作数据库（增删改查）</td>\n</tr>\n<tr>\n<td>Entity</td>\n<td><code>@Entity</code></td>\n<td>对应数据库表的 Java 类</td>\n</tr>\n</tbody></table>\n<h2 id=\"关于-mysql-是否必要\">关于 MySQL 是否必要</h2>\n<table>\n<thead>\n<tr>\n<th>场景</th>\n<th>是否需要 MySQL</th>\n</tr>\n</thead>\n<tbody><tr>\n<td>学习阶段、数据写死在代码里</td>\n<td>不需要，用 List 模拟即可</td>\n</tr>\n<tr>\n<td>数据需要持久化保存</td>\n<td>需要</td>\n</tr>\n<tr>\n<td>真实项目、有增删改查需求</td>\n<td>需要</td>\n</tr>\n</tbody></table>\n<p><strong>学习建议：</strong> 先用 Mock 数据（写死在代码里的 List）跑通流程，再接入真实数据库。</p>\n<p><strong>接入数据库需要的步骤：</strong></p>\n<ol>\n<li><code>pom.xml</code> 引入 <code>spring-boot-starter-data-jpa</code> 和 <code>mysql-connector-java</code></li>\n<li><code>application.properties</code> 配置数据库连接</li>\n<li>创建 Entity 类，加上 <code>@Entity</code>、<code>@Table</code> 注解</li>\n<li>创建 Repository 接口，继承 <code>JpaRepository</code></li>\n</ol>\n<h2 id=\"java-语法速览-对比-javascript\">Java 语法速览（对比 JavaScript）</h2>\n<h3 id=\"变量声明\">变量声明</h3>\n<pre><code class=\"hljs language-java\"><span class=\"hljs-comment\">// Java - 强类型，必须声明类型</span>\n<span class=\"hljs-type\">int</span> <span class=\"hljs-variable\">age</span> <span class=\"hljs-operator\">=</span> <span class=\"hljs-number\">25</span>;\n<span class=\"hljs-type\">String</span> <span class=\"hljs-variable\">name</span> <span class=\"hljs-operator\">=</span> <span class=\"hljs-string\">&quot;Tom&quot;</span>;\n<span class=\"hljs-type\">boolean</span> <span class=\"hljs-variable\">isActive</span> <span class=\"hljs-operator\">=</span> <span class=\"hljs-literal\">true</span>;\nList&lt;String&gt; list = <span class=\"hljs-keyword\">new</span> <span class=\"hljs-title class_\">ArrayList</span>&lt;&gt;();\n\n<span class=\"hljs-comment\">// 类比 JS</span>\n<span class=\"hljs-comment\">// let age = 25;</span>\n<span class=\"hljs-comment\">// const name = &quot;Tom&quot;;</span>\n</code></pre><h3 id=\"函数-方法\">函数（方法）</h3>\n<pre><code class=\"hljs language-java\"><span class=\"hljs-comment\">// Java - 必须声明返回类型和参数类型</span>\n<span class=\"hljs-keyword\">public</span> String <span class=\"hljs-title function_\">greet</span><span class=\"hljs-params\">(String name)</span> {\n    <span class=\"hljs-keyword\">return</span> <span class=\"hljs-string\">&quot;Hello, &quot;</span> + name;\n}\n\n<span class=\"hljs-comment\">// void 表示无返回值</span>\n<span class=\"hljs-keyword\">public</span> <span class=\"hljs-keyword\">void</span> <span class=\"hljs-title function_\">printName</span><span class=\"hljs-params\">(String name)</span> {\n    System.out.println(name);\n}\n</code></pre><h3 id=\"类\">类</h3>\n<pre><code class=\"hljs language-java\"><span class=\"hljs-keyword\">public</span> <span class=\"hljs-keyword\">class</span> <span class=\"hljs-title class_\">Product</span> {\n    <span class=\"hljs-keyword\">private</span> Long id;\n    <span class=\"hljs-keyword\">private</span> String name;\n    <span class=\"hljs-keyword\">private</span> Double price;\n\n    <span class=\"hljs-comment\">// 构造函数</span>\n    <span class=\"hljs-keyword\">public</span> <span class=\"hljs-title function_\">Product</span><span class=\"hljs-params\">(Long id, String name, Double price)</span> {\n        <span class=\"hljs-built_in\">this</span>.id = id;\n        <span class=\"hljs-built_in\">this</span>.name = name;\n        <span class=\"hljs-built_in\">this</span>.price = price;\n    }\n\n    <span class=\"hljs-comment\">// getter/setter</span>\n    <span class=\"hljs-keyword\">public</span> Long <span class=\"hljs-title function_\">getId</span><span class=\"hljs-params\">()</span> { <span class=\"hljs-keyword\">return</span> id; }\n    <span class=\"hljs-keyword\">public</span> <span class=\"hljs-keyword\">void</span> <span class=\"hljs-title function_\">setId</span><span class=\"hljs-params\">(Long id)</span> { <span class=\"hljs-built_in\">this</span>.id = id; }\n}\n</code></pre><h3 id=\"常用注解-spring-boot\">常用注解（Spring Boot）</h3>\n<table>\n<thead>\n<tr>\n<th>注解</th>\n<th>作用</th>\n</tr>\n</thead>\n<tbody><tr>\n<td><code>@SpringBootApplication</code></td>\n<td>标记启动类</td>\n</tr>\n<tr>\n<td><code>@RestController</code></td>\n<td>标记 Controller 类，返回 JSON</td>\n</tr>\n<tr>\n<td><code>@GetMapping(&quot;/path&quot;)</code></td>\n<td>处理 GET 请求</td>\n</tr>\n<tr>\n<td><code>@PostMapping(&quot;/path&quot;)</code></td>\n<td>处理 POST 请求</td>\n</tr>\n<tr>\n<td><code>@RequestBody</code></td>\n<td>从请求体读取 JSON 参数</td>\n</tr>\n<tr>\n<td><code>@PathVariable</code></td>\n<td>从 URL 路径读取参数</td>\n</tr>\n<tr>\n<td><code>@RequestParam</code></td>\n<td>从 URL 查询参数读取</td>\n</tr>\n<tr>\n<td><code>@Service</code></td>\n<td>标记 Service 类</td>\n</tr>\n<tr>\n<td><code>@Autowired</code></td>\n<td>自动注入依赖</td>\n</tr>\n</tbody></table>\n<h2 id=\"全栈项目示例\">全栈项目示例</h2>\n<h3 id=\"项目路径\">项目路径</h3>\n<pre><code>D:\\myCodes\\javaTestProject\\\n</code></pre><h3 id=\"后端接口\">后端接口</h3>\n<p><strong>端口：</strong> 8081</p>\n<table>\n<thead>\n<tr>\n<th>接口</th>\n<th>方法</th>\n<th>路径</th>\n<th>说明</th>\n</tr>\n</thead>\n<tbody><tr>\n<td>获取列表</td>\n<td>POST</td>\n<td><code>/api/products/list</code></td>\n<td>返回商品列表</td>\n</tr>\n<tr>\n<td>获取详情</td>\n<td>POST</td>\n<td><code>/api/products/detail</code></td>\n<td>返回单个商品详情</td>\n</tr>\n</tbody></table>\n<h3 id=\"productcontroller-核心代码\">ProductController 核心代码</h3>\n<pre><code class=\"hljs language-java\"><span class=\"hljs-meta\">@PostMapping(&quot;/list&quot;)</span>\n<span class=\"hljs-keyword\">public</span> List&lt;Product&gt; <span class=\"hljs-title function_\">listByPost</span><span class=\"hljs-params\">(<span class=\"hljs-meta\">@RequestBody(required = false)</span> Map&lt;String, Object&gt; request)</span> {\n    <span class=\"hljs-keyword\">return</span> productService.list();\n}\n\n<span class=\"hljs-meta\">@PostMapping(&quot;/detail&quot;)</span>\n<span class=\"hljs-keyword\">public</span> ResponseEntity&lt;Product&gt; <span class=\"hljs-title function_\">detailByPost</span><span class=\"hljs-params\">(<span class=\"hljs-meta\">@RequestBody</span> Map&lt;String, Object&gt; request)</span> {\n    <span class=\"hljs-type\">Long</span> <span class=\"hljs-variable\">id</span> <span class=\"hljs-operator\">=</span> Long.valueOf(String.valueOf(request.get(<span class=\"hljs-string\">&quot;id&quot;</span>)));\n    <span class=\"hljs-keyword\">return</span> findDetail(id);\n}\n</code></pre><h3 id=\"前端-ajax-post-调用示例\">前端 Ajax POST 调用示例</h3>\n<pre><code class=\"hljs language-javascript\"><span class=\"hljs-keyword\">function</span> <span class=\"hljs-title function_\">request</span>(<span class=\"hljs-params\">url, data, callback</span>) {\n    <span class=\"hljs-keyword\">var</span> xhr = <span class=\"hljs-keyword\">new</span> <span class=\"hljs-title class_\">XMLHttpRequest</span>();\n    xhr.<span class=\"hljs-title function_\">open</span>(<span class=\"hljs-string\">&#x27;POST&#x27;</span>, url, <span class=\"hljs-literal\">true</span>);\n    xhr.<span class=\"hljs-title function_\">setRequestHeader</span>(<span class=\"hljs-string\">&#x27;Content-Type&#x27;</span>, <span class=\"hljs-string\">&#x27;application/json&#x27;</span>);\n    xhr.<span class=\"hljs-property\">onreadystatechange</span> = <span class=\"hljs-keyword\">function</span> (<span class=\"hljs-params\"></span>) {\n        <span class=\"hljs-keyword\">if</span> (xhr.<span class=\"hljs-property\">readyState</span> === <span class=\"hljs-number\">4</span> &amp;&amp; xhr.<span class=\"hljs-property\">status</span> === <span class=\"hljs-number\">200</span>) {\n            <span class=\"hljs-title function_\">callback</span>(<span class=\"hljs-title class_\">JSON</span>.<span class=\"hljs-title function_\">parse</span>(xhr.<span class=\"hljs-property\">responseText</span>));\n        }\n    };\n    xhr.<span class=\"hljs-title function_\">send</span>(<span class=\"hljs-title class_\">JSON</span>.<span class=\"hljs-title function_\">stringify</span>(data));\n}\n\n<span class=\"hljs-comment\">// 获取列表</span>\n<span class=\"hljs-title function_\">request</span>(<span class=\"hljs-string\">&#x27;/api/products/list&#x27;</span>, {}, <span class=\"hljs-keyword\">function</span>(<span class=\"hljs-params\">data</span>) {\n    <span class=\"hljs-variable language_\">console</span>.<span class=\"hljs-title function_\">log</span>(data);\n});\n\n<span class=\"hljs-comment\">// 获取详情</span>\n<span class=\"hljs-title function_\">request</span>(<span class=\"hljs-string\">&#x27;/api/products/detail&#x27;</span>, { <span class=\"hljs-attr\">id</span>: <span class=\"hljs-number\">1</span> }, <span class=\"hljs-keyword\">function</span>(<span class=\"hljs-params\">data</span>) {\n    <span class=\"hljs-variable language_\">console</span>.<span class=\"hljs-title function_\">log</span>(data);\n});\n</code></pre><h3 id=\"启动命令\">启动命令</h3>\n<pre><code class=\"hljs language-powershell\"><span class=\"hljs-comment\"># 进入项目目录</span>\n<span class=\"hljs-built_in\">cd</span> D:\\myCodes\\javaTestProject\n\n<span class=\"hljs-comment\"># 编译打包</span>\nmvn clean package <span class=\"hljs-literal\">-DskipTests</span>\n\n<span class=\"hljs-comment\"># 启动（后台运行）</span>\n<span class=\"hljs-built_in\">Start-Process</span> java <span class=\"hljs-literal\">-ArgumentList</span> <span class=\"hljs-string\">&quot;-jar&quot;</span>, <span class=\"hljs-string\">&quot;target\\javaTestProject-1.0-SNAPSHOT.jar&quot;</span>\n</code></pre><h2 id=\"常见问题排查\">常见问题排查</h2>\n<table>\n<thead>\n<tr>\n<th>问题</th>\n<th>原因</th>\n<th>解决方法</th>\n</tr>\n</thead>\n<tbody><tr>\n<td><code>mvn</code> 命令无法识别</td>\n<td>Path 变量配置错误</td>\n<td>检查用户 Path，确保包含 <code>%MAVEN_HOME%\\bin</code></td>\n</tr>\n<tr>\n<td>MySQL 服务无法启动</td>\n<td>端口 3306 被占用</td>\n<td>执行 <code>mysqladmin -u root -p shutdown</code> 后重启服务</td>\n</tr>\n<tr>\n<td>修改代码后接口未生效</td>\n<td>旧 jar 包仍在运行</td>\n<td><code>mvn clean package</code> 重新打包，停止旧进程后重启</td>\n</tr>\n<tr>\n<td>端口被占用</td>\n<td>上次未正常关闭服务</td>\n<td><code>netstat -ano | findstr :8081</code> 找到 PID，<code>taskkill /PID xxx /F</code> 结束进程</td>\n</tr>\n</tbody></table>\n<h2 id=\"推荐学习路线\">推荐学习路线</h2>\n<pre><code>阶段一：Java 基础语法（1-2周）\n  └── 变量、数据类型、控制流、类与对象\n\n阶段二：Spring Boot 入门（2-3周）\n  └── RESTful API、Controller/Service/Repository 分层\n\n阶段三：数据库（2-3周）\n  └── MySQL 基础 SQL + Spring Data JPA / MyBatis\n\n阶段四：进阶（持续）\n  └── Spring Security（认证鉴权）\n  └── Redis（缓存）\n  └── Docker（容器化部署）\n  └── 微服务（Spring Cloud）\n</code></pre>"
+}

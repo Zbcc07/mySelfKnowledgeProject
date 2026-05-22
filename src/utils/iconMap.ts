@@ -1,6 +1,7 @@
 import {
   BookOpen,
   Boxes,
+  ClipboardList,
   Code2,
   Database,
   FileSearch,
@@ -22,6 +23,7 @@ import type { Component } from 'vue'
 export const iconMap: Record<string, Component> = {
   BookOpen,
   Boxes,
+  ClipboardList,
   Code2,
   Database,
   FileSearch,

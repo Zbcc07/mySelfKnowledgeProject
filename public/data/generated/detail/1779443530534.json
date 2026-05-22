@@ -1,0 +1,129 @@
+{
+  "id": "1779443530534",
+  "title": "Java 后端学习笔记（二）：项目结构与语法入门",
+  "category": "backend",
+  "categoryName": "后端",
+  "categoryColor": "coral",
+  "tags": [
+    "Java",
+    "后端",
+    "Spring Boot",
+    "入门",
+    "语法"
+  ],
+  "date": "2026-05-22",
+  "summary": "从前端开发者视角整理 Java 后端项目的日常操作流程、完整项目结构及各层职责、Java 语法与 JavaScript 对比速览。",
+  "author": "",
+  "source": "https://app.epoint.com.cn/h5/fileattaches/20260509/1778308644107_655b07ea/javaTestProject.zip",
+  "toc": [
+    {
+      "id": "项目日常开启与关闭",
+      "label": "项目日常开启与关闭"
+    },
+    {
+      "id": "每天开始工作推荐流程",
+      "label": "每天开始工作推荐流程"
+    },
+    {
+      "id": "关闭项目",
+      "label": "关闭项目"
+    },
+    {
+      "id": "每天工作准备清单",
+      "label": "每天工作准备清单"
+    },
+    {
+      "id": "后端项目完整结构",
+      "label": "后端项目完整结构"
+    },
+    {
+      "id": "当前入门项目结构",
+      "label": "当前入门项目结构"
+    },
+    {
+      "id": "真实项目完整结构",
+      "label": "真实项目完整结构"
+    },
+    {
+      "id": "各层之间的关系",
+      "label": "各层之间的关系"
+    },
+    {
+      "id": "后端功能开发流程",
+      "label": "后端功能开发流程"
+    },
+    {
+      "id": "是否需要-mysql-数据库",
+      "label": "是否需要 MySQL 数据库"
+    },
+    {
+      "id": "学习初期-暂时不需要",
+      "label": "学习初期：暂时不需要"
+    },
+    {
+      "id": "什么时候才需要-mysql",
+      "label": "什么时候才需要 MySQL"
+    },
+    {
+      "id": "mysql-连接信息",
+      "label": "MySQL 连接信息"
+    },
+    {
+      "id": "学习建议",
+      "label": "学习建议"
+    },
+    {
+      "id": "java-语法快速入门",
+      "label": "Java 语法快速入门"
+    },
+    {
+      "id": "package-包声明",
+      "label": "package — 包声明"
+    },
+    {
+      "id": "import-引入依赖",
+      "label": "import — 引入依赖"
+    },
+    {
+      "id": "class-类",
+      "label": "class — 类"
+    },
+    {
+      "id": "public-private-访问修饰符",
+      "label": "public / private — 访问修饰符"
+    },
+    {
+      "id": "变量类型-强类型声明",
+      "label": "变量类型 — 强类型声明"
+    },
+    {
+      "id": "方法-函数",
+      "label": "方法 — 函数"
+    },
+    {
+      "id": "注解-spring-boot-核心用法",
+      "label": "注解 — Spring Boot 核心用法"
+    },
+    {
+      "id": "构造方法-依赖注入",
+      "label": "构造方法 — 依赖注入"
+    },
+    {
+      "id": "service-业务层",
+      "label": "Service — 业务层"
+    },
+    {
+      "id": "model-数据模型",
+      "label": "Model — 数据模型"
+    },
+    {
+      "id": "条件判断与响应返回",
+      "label": "条件判断与响应返回"
+    },
+    {
+      "id": "下一步学习建议",
+      "label": "下一步学习建议"
+    }
+  ],
+  "html": "<h2 id=\"项目日常开启与关闭\">项目日常开启与关闭</h2>\n<h3 id=\"每天开始工作推荐流程\">每天开始工作推荐流程</h3>\n<p><strong>第一步：打开 IDEA</strong></p>\n<p>用 IDEA 打开项目目录 <code>D:\\myCodes\\javaTestProject</code>，如果 IDEA 已有最近项目记录，直接点进去即可。</p>\n<p><strong>第二步：确认 JDK 和 Maven 环境</strong></p>\n<pre><code class=\"hljs language-powershell\">java <span class=\"hljs-literal\">-version</span>\nmvn <span class=\"hljs-literal\">-v</span>\n</code></pre><blockquote>\n<p>如果命令不识别，先关闭 PowerShell / IDEA 重新打开再试。</p>\n</blockquote>\n<p><strong>第三步：启动项目</strong></p>\n<p>推荐方式一：<strong>IDEA 启动</strong>（日常开发首选）</p>\n<p>找到启动类，点击左侧绿色运行按钮：</p>\n<pre><code>src/main/java/com/example/javatestproject/JavaTestProjectApplication.java\n</code></pre><p>方式二：<strong>命令行启动</strong></p>\n<pre><code class=\"hljs language-powershell\"><span class=\"hljs-built_in\">cd</span> D:\\myCodes\\javaTestProject\nmvn spring<span class=\"hljs-literal\">-boot</span>:run\n</code></pre><p>方式三：<strong>双击启动脚本</strong></p>\n<pre><code>D:\\myCodes\\javaTestProject\\start.bat\n</code></pre><p><strong>第四步：验证项目是否正常运行</strong></p>\n<p>浏览器访问以下地址，能看到页面说明项目已成功启动：</p>\n<pre><code>http://localhost:8081\nhttp://localhost:8081/api/health\n</code></pre><h3 id=\"关闭项目\">关闭项目</h3>\n<table>\n<thead>\n<tr>\n<th>启动方式</th>\n<th>关闭操作</th>\n</tr>\n</thead>\n<tbody><tr>\n<td>IDEA 启动</td>\n<td>点击控制台右侧红色停止按钮</td>\n</tr>\n<tr>\n<td>命令行启动</td>\n<td>按 <code>Ctrl + C</code>，输入 <code>Y</code> 确认</td>\n</tr>\n</tbody></table>\n<p><strong>不确定项目是否还在运行时：</strong></p>\n<pre><code class=\"hljs language-powershell\"><span class=\"hljs-comment\"># 查找占用 8081 端口的进程</span>\nnetstat <span class=\"hljs-literal\">-ano</span> | findstr :<span class=\"hljs-number\">8081</span>\n</code></pre><p>输出示例：<code>TCP 0.0.0.0:8081 0.0.0.0:0 LISTENING 29164</code></p>\n<p>其中 <code>29164</code> 是进程 ID，执行以下命令关闭它：</p>\n<pre><code class=\"hljs language-powershell\"><span class=\"hljs-comment\"># 方式一</span>\ntaskkill /PID <span class=\"hljs-number\">29164</span> /F\n\n<span class=\"hljs-comment\"># 方式二（PowerShell）</span>\n<span class=\"hljs-built_in\">Stop-Process</span> <span class=\"hljs-literal\">-Id</span> <span class=\"hljs-number\">29164</span> <span class=\"hljs-literal\">-Force</span>\n</code></pre><h3 id=\"每天工作准备清单\">每天工作准备清单</h3>\n<table>\n<thead>\n<tr>\n<th align=\"center\">步骤</th>\n<th>操作</th>\n</tr>\n</thead>\n<tbody><tr>\n<td align=\"center\">1</td>\n<td>打开 IDEA</td>\n</tr>\n<tr>\n<td align=\"center\">2</td>\n<td>打开项目 <code>D:\\myCodes\\javaTestProject</code></td>\n</tr>\n<tr>\n<td align=\"center\">3</td>\n<td>启动 <code>JavaTestProjectApplication</code></td>\n</tr>\n<tr>\n<td align=\"center\">4</td>\n<td>浏览器访问 <code>http://localhost:8081</code> 确认正常</td>\n</tr>\n<tr>\n<td align=\"center\">5</td>\n<td>开始修改代码、测试接口</td>\n</tr>\n<tr>\n<td align=\"center\">6</td>\n<td>下班前关闭项目</td>\n</tr>\n</tbody></table>\n<blockquote>\n<p>当前项目暂时不依赖 MySQL，所以不需要每天启动 MySQL 服务。</p>\n</blockquote>\n<h2 id=\"后端项目完整结构\">后端项目完整结构</h2>\n<h3 id=\"当前入门项目结构\">当前入门项目结构</h3>\n<pre><code>javaTestProject\n├─ pom.xml                                        # 依赖配置（类似前端的 package.json）\n├─ src/main/java/com/example/javatestproject\n│  ├─ controller                                  # 接口层\n│  ├─ model                                       # 数据模型\n│  ├─ service                                     # 业务层\n│  └─ JavaTestProjectApplication.java             # 启动入口\n└─ src/main/resources\n   ├─ application.properties                      # 配置文件（端口、数据库等）\n   └─ static                                      # 静态资源（前端页面）\n</code></pre><h3 id=\"真实项目完整结构\">真实项目完整结构</h3>\n<pre><code>src/main/java/com/example/project\n├─ controller        接口层，接收前端请求\n├─ service           业务层，处理业务逻辑\n├─ service/impl      业务实现类\n├─ mapper            数据库访问层（MyBatis 风格）\n├─ repository        数据库访问层（JPA 风格）\n├─ entity            数据库实体类，对应数据库表\n├─ dto               接收前端传参的数据结构\n├─ vo                返回给前端的数据结构\n├─ config            配置类（跨域、拦截器、Swagger 等）\n├─ common            通用返回结果、异常定义、常量\n├─ exception         全局异常处理\n├─ util              工具类\n└─ XxxApplication.java\n</code></pre><h3 id=\"各层之间的关系\">各层之间的关系</h3>\n<p>请求从前端到后端的完整链路：</p>\n<pre><code>前端页面  →  Controller  →  Service  →  Mapper/Repository  →  数据库\n数据库    →  Mapper/Repository  →  Service  →  Controller  →  前端页面\n</code></pre><p><strong>以商品详情接口为例：</strong></p>\n<pre><code>POST /api/products/detail\n        ↓\nProductController 接收请求\n        ↓\n调用 ProductService.findById(id)\n        ↓\nService 查询并返回 Product 对象\n        ↓\nController 将结果序列化为 JSON 返回给前端\n</code></pre><blockquote>\n<p>当前项目没有数据库，ProductService 直接用内存中的 List 模拟数据。</p>\n</blockquote>\n<h3 id=\"后端功能开发流程\">后端功能开发流程</h3>\n<ol>\n<li>明确需求</li>\n<li>设计接口（路径、请求参数、返回结构）</li>\n<li>设计数据库表</li>\n<li>写 Entity / Model</li>\n<li>写 Mapper / Repository</li>\n<li>写 Service</li>\n<li>写 Controller</li>\n<li>前后端联调</li>\n<li>测试接口</li>\n<li>修 Bug</li>\n</ol>\n<p><strong>示例：商品详情功能</strong></p>\n<pre><code>需求：点击商品列表，查看商品详情\n\n接口：POST /api/products/detail\n\n请求体：\n{\n  &quot;id&quot;: 1\n}\n\n返回：\n{\n  &quot;id&quot;: 1,\n  &quot;name&quot;: &quot;Spring Boot 入门课&quot;,\n  &quot;price&quot;: 99.00\n}\n</code></pre><h2 id=\"是否需要-mysql-数据库\">是否需要 MySQL 数据库</h2>\n<h3 id=\"学习初期-暂时不需要\">学习初期：暂时不需要</h3>\n<p>当前项目的数据写死在 <code>ProductService.java</code> 里，项目重启后数据始终不变，不依赖 MySQL。</p>\n<h3 id=\"什么时候才需要-mysql\">什么时候才需要 MySQL</h3>\n<ul>\n<li>新增 / 删除 / 修改商品</li>\n<li>用户注册与登录</li>\n<li>保存订单、文章、评论</li>\n<li>分页查询</li>\n</ul>\n<h3 id=\"mysql-连接信息\">MySQL 连接信息</h3>\n<table>\n<thead>\n<tr>\n<th>配置项</th>\n<th>值</th>\n</tr>\n</thead>\n<tbody><tr>\n<td>Host</td>\n<td>localhost</td>\n</tr>\n<tr>\n<td>Port</td>\n<td>3306</td>\n</tr>\n<tr>\n<td>User</td>\n<td>root</td>\n</tr>\n<tr>\n<td>Password</td>\n<td>root</td>\n</tr>\n<tr>\n<td>服务名</td>\n<td>MySQL57</td>\n</tr>\n</tbody></table>\n<pre><code class=\"hljs language-powershell\"><span class=\"hljs-comment\"># 启动 MySQL</span>\nnet <span class=\"hljs-built_in\">start</span> MySQL57\n\n<span class=\"hljs-comment\"># 停止 MySQL</span>\nnet stop MySQL57\n</code></pre><h3 id=\"学习建议\">学习建议</h3>\n<p><strong>第一阶段（现在）：</strong> 先不用 MySQL，重点理解以下概念：</p>\n<ul>\n<li>Controller / Service / Model 各层职责</li>\n<li>接口请求与 JSON 返回</li>\n<li>前端 Ajax 如何调用后端</li>\n</ul>\n<p><strong>第二阶段（后续）：</strong> 将项目升级为 <code>Spring Boot + MySQL + MyBatis</code>，这样学习更扎实。</p>\n<h2 id=\"java-语法快速入门\">Java 语法快速入门</h2>\n<blockquote>\n<p>结合实际项目代码讲解，有前端基础更容易理解。</p>\n</blockquote>\n<h3 id=\"package-包声明\">package — 包声明</h3>\n<pre><code class=\"hljs language-java\"><span class=\"hljs-keyword\">package</span> com.example.javatestproject.controller;\n</code></pre><p>声明这个类属于哪个包，相当于文件夹分类，便于组织代码。</p>\n<h3 id=\"import-引入依赖\">import — 引入依赖</h3>\n<pre><code class=\"hljs language-java\"><span class=\"hljs-keyword\">import</span> org.springframework.web.bind.annotation.RestController;\n</code></pre><p>引入别人写好的类或注解，类似前端的 <code>import xxx from &#39;xxx&#39;</code>。</p>\n<h3 id=\"class-类\">class — 类</h3>\n<pre><code class=\"hljs language-java\"><span class=\"hljs-keyword\">public</span> <span class=\"hljs-keyword\">class</span> <span class=\"hljs-title class_\">ProductController</span> {\n}\n</code></pre><p>Java 里几乎所有代码都写在类里面。</p>\n<h3 id=\"public-private-访问修饰符\">public / private — 访问修饰符</h3>\n<pre><code class=\"hljs language-java\"><span class=\"hljs-keyword\">public</span> <span class=\"hljs-keyword\">class</span> <span class=\"hljs-title class_\">ProductController</span>          <span class=\"hljs-comment\">// 外部可以访问</span>\n<span class=\"hljs-keyword\">private</span> <span class=\"hljs-keyword\">final</span> ProductService service;   <span class=\"hljs-comment\">// 只能在当前类内部访问</span>\n</code></pre><table>\n<thead>\n<tr>\n<th>修饰符</th>\n<th>含义</th>\n</tr>\n</thead>\n<tbody><tr>\n<td><code>public</code></td>\n<td>外部可访问</td>\n</tr>\n<tr>\n<td><code>private</code></td>\n<td>仅当前类内部可访问</td>\n</tr>\n<tr>\n<td><code>protected</code></td>\n<td>当前类及子类可访问</td>\n</tr>\n</tbody></table>\n<h3 id=\"变量类型-强类型声明\">变量类型 — 强类型声明</h3>\n<pre><code class=\"hljs language-java\">String name;\nLong id;\nBigDecimal price;\nList&lt;Product&gt; products;\nMap&lt;String, Object&gt; request;\n</code></pre><p>常见类型速查：</p>\n<table>\n<thead>\n<tr>\n<th>类型</th>\n<th>说明</th>\n<th>对应 JS</th>\n</tr>\n</thead>\n<tbody><tr>\n<td><code>String</code></td>\n<td>字符串</td>\n<td><code>string</code></td>\n</tr>\n<tr>\n<td><code>Integer</code></td>\n<td>整数</td>\n<td><code>number</code></td>\n</tr>\n<tr>\n<td><code>Long</code></td>\n<td>长整数（大数字）</td>\n<td><code>number</code></td>\n</tr>\n<tr>\n<td><code>Boolean</code></td>\n<td>布尔值</td>\n<td><code>boolean</code></td>\n</tr>\n<tr>\n<td><code>BigDecimal</code></td>\n<td>高精度小数（常用于金额）</td>\n<td>—</td>\n</tr>\n<tr>\n<td><code>List&lt;T&gt;</code></td>\n<td>列表</td>\n<td><code>Array</code></td>\n</tr>\n<tr>\n<td><code>Map&lt;K,V&gt;</code></td>\n<td>键值对</td>\n<td><code>Object</code></td>\n</tr>\n</tbody></table>\n<h3 id=\"方法-函数\">方法 — 函数</h3>\n<pre><code class=\"hljs language-java\"><span class=\"hljs-keyword\">public</span> List&lt;Product&gt; <span class=\"hljs-title function_\">list</span><span class=\"hljs-params\">()</span> {\n    <span class=\"hljs-keyword\">return</span> productService.list();\n}\n</code></pre><table>\n<thead>\n<tr>\n<th>部分</th>\n<th>含义</th>\n</tr>\n</thead>\n<tbody><tr>\n<td><code>public</code></td>\n<td>外部可以调用</td>\n</tr>\n<tr>\n<td><code>List&lt;Product&gt;</code></td>\n<td>返回值类型（商品列表）</td>\n</tr>\n<tr>\n<td><code>list</code></td>\n<td>方法名</td>\n</tr>\n<tr>\n<td><code>()</code></td>\n<td>参数列表（此处为空）</td>\n</tr>\n<tr>\n<td><code>return</code></td>\n<td>返回结果</td>\n</tr>\n</tbody></table>\n<h3 id=\"注解-spring-boot-核心用法\">注解 — Spring Boot 核心用法</h3>\n<p><strong><code>@RestController</code></strong> — 标记接口控制器，方法返回值自动转为 JSON</p>\n<pre><code class=\"hljs language-java\"><span class=\"hljs-meta\">@RestController</span>\n<span class=\"hljs-keyword\">public</span> <span class=\"hljs-keyword\">class</span> <span class=\"hljs-title class_\">ProductController</span> {\n}\n</code></pre><p><strong><code>@RequestMapping</code></strong> — 设置接口路径前缀</p>\n<pre><code class=\"hljs language-java\"><span class=\"hljs-meta\">@RequestMapping(&quot;/api/products&quot;)</span>\n<span class=\"hljs-comment\">// 该 Controller 下所有接口路径都以 /api/products 开头</span>\n</code></pre><p><strong><code>@PostMapping</code></strong> — 处理 POST 请求</p>\n<pre><code class=\"hljs language-java\"><span class=\"hljs-meta\">@PostMapping(&quot;/list&quot;)</span>\n<span class=\"hljs-comment\">// 完整接口路径：POST /api/products/list</span>\n</code></pre><p><strong><code>@RequestBody</code></strong> — 从请求体中接收 JSON 参数</p>\n<pre><code class=\"hljs language-java\"><span class=\"hljs-keyword\">public</span> ResponseEntity&lt;Product&gt; <span class=\"hljs-title function_\">detailByPost</span><span class=\"hljs-params\">(<span class=\"hljs-meta\">@RequestBody</span> Map&lt;String, Object&gt; request)</span>\n</code></pre><p>前端传入 <code>{&quot;id&quot;: 1}</code>，后端通过 <code>request.get(&quot;id&quot;)</code> 取值。</p>\n<h3 id=\"构造方法-依赖注入\">构造方法 — 依赖注入</h3>\n<pre><code class=\"hljs language-java\"><span class=\"hljs-keyword\">public</span> <span class=\"hljs-title function_\">ProductController</span><span class=\"hljs-params\">(ProductService productService)</span> {\n    <span class=\"hljs-built_in\">this</span>.productService = productService;\n}\n</code></pre><p>Spring Boot 会自动将 <code>ProductService</code> 实例注入到 <code>ProductController</code> 中，这种机制叫<strong>依赖注入</strong>。可以理解为：Controller 需要 Service，Spring 自动帮你传进来，不需要手动 <code>new</code>。</p>\n<h3 id=\"service-业务层\">Service — 业务层</h3>\n<pre><code class=\"hljs language-java\"><span class=\"hljs-meta\">@Service</span>\n<span class=\"hljs-keyword\">public</span> <span class=\"hljs-keyword\">class</span> <span class=\"hljs-title class_\">ProductService</span> {\n\n    <span class=\"hljs-keyword\">public</span> List&lt;Product&gt; <span class=\"hljs-title function_\">list</span><span class=\"hljs-params\">()</span> {\n        <span class=\"hljs-keyword\">return</span> <span class=\"hljs-keyword\">new</span> <span class=\"hljs-title class_\">ArrayList</span>&lt;&gt;(products.values());\n    }\n}\n</code></pre><p><code>@Service</code> 标记业务层，负责处理逻辑。当前项目中它直接返回内存里的商品数据。</p>\n<h3 id=\"model-数据模型\">Model — 数据模型</h3>\n<pre><code class=\"hljs language-java\"><span class=\"hljs-keyword\">public</span> <span class=\"hljs-keyword\">class</span> <span class=\"hljs-title class_\">Product</span> {\n    <span class=\"hljs-keyword\">private</span> Long id;\n    <span class=\"hljs-keyword\">private</span> String name;\n    <span class=\"hljs-keyword\">private</span> BigDecimal price;\n}\n</code></pre><p><code>Product</code> 是数据模型类，对应一条数据记录。Spring Boot 返回时会自动将 Java 对象转为 JSON：</p>\n<pre><code class=\"hljs language-json\"><span class=\"hljs-punctuation\">{</span>\n  <span class=\"hljs-attr\">&quot;id&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-number\">1</span><span class=\"hljs-punctuation\">,</span>\n  <span class=\"hljs-attr\">&quot;name&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;Spring Boot 入门课&quot;</span><span class=\"hljs-punctuation\">,</span>\n  <span class=\"hljs-attr\">&quot;price&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-number\">99.00</span>\n<span class=\"hljs-punctuation\">}</span>\n</code></pre><h3 id=\"条件判断与响应返回\">条件判断与响应返回</h3>\n<pre><code class=\"hljs language-java\"><span class=\"hljs-comment\">// if 条件判断</span>\n<span class=\"hljs-keyword\">if</span> (product == <span class=\"hljs-literal\">null</span>) {\n    <span class=\"hljs-keyword\">return</span> ResponseEntity.notFound().build();   <span class=\"hljs-comment\">// 返回 404</span>\n}\n\n<span class=\"hljs-comment\">// return 返回响应</span>\n<span class=\"hljs-keyword\">return</span> ResponseEntity.ok(product);   <span class=\"hljs-comment\">// 返回 200 成功，并附带 product 数据</span>\n</code></pre><h2 id=\"下一步学习建议\">下一步学习建议</h2>\n<p>按以下顺序逐步理解当前项目代码：</p>\n<ol>\n<li>看懂 <code>ProductController</code></li>\n<li>看懂 <code>ProductService</code></li>\n<li>看懂 <code>Product</code></li>\n<li>看懂 <code>app.js</code> 里的 <code>ajaxPost</code></li>\n<li>自己新增一个接口</li>\n<li>自己新增一条商品数据</li>\n<li>接入 MySQL</li>\n</ol>\n<p><strong>推荐练习：新增一个&quot;新增商品&quot;接口</strong></p>\n<pre><code>接口：POST /api/products/create\n\n请求体：\n{\n  &quot;name&quot;: &quot;新商品&quot;,\n  &quot;price&quot;: 99.00,\n  &quot;description&quot;: &quot;商品描述&quot;\n}\n</code></pre><p>前端提交表单后，商品列表自动刷新显示新数据。这是从入门走向实战的关键一步。</p>\n"
+}

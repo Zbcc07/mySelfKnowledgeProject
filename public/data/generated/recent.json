@@ -1,69 +1,75 @@
 [
   {
-    "id": "1778313737776",
-    "title": "Vue3 响应式系统整理",
-    "category": "前端",
-    "categoryColor": "sun",
-    "date": "2026-05-09",
-    "summary": "整理 Vue3 响应式系统的核心概念、常见 API 和实践注意事项。",
+    "id": "1779442697363",
+    "title": "动作流 ApplicationTag 关联上下文变量需求",
+    "category": "需求开发",
+    "categoryColor": "purple",
+    "date": "2026-05-22",
+    "summary": "从前端开发者视角，梳理动作流设计器中基于 applicationTag 自动追加应用关联数据对象到节点上下文变量列表的需求背景、机制设计与数据流转。",
     "tags": [
-      "Vue3",
-      "响应式",
-      "Composition API"
+      "需求开发",
+      "动作流",
+      "Java注解",
+      "后端架构",
+      "数据流"
     ]
   },
   {
-    "id": "1778320236288",
-    "title": "Java 后端核心技术栈整理",
+    "id": "1779443530293",
+    "title": "常用 SQL 命令速查",
+    "category": "数据库",
+    "categoryColor": "leaf",
+    "date": "2026-05-22",
+    "summary": "整理 MySQL 的常用 SQL 命令，涵盖数据库创建、表创建、数据插入与查询等基础操作。",
+    "tags": [
+      "SQL",
+      "数据库",
+      "MySQL"
+    ]
+  },
+  {
+    "id": "1779443530534",
+    "title": "Java 后端学习笔记（二）：项目结构与语法入门",
     "category": "后端",
     "categoryColor": "coral",
-    "date": "2026-05-09",
-    "summary": "梳理 Java 后端开发常用的核心组件（JDK、Maven、Spring Boot、Nginx、Redis）与学习路径，帮助建立完整知识体系。",
+    "date": "2026-05-22",
+    "summary": "从前端开发者视角整理 Java 后端项目的日常操作流程、完整项目结构及各层职责、Java 语法与 JavaScript 对比速览。",
     "tags": [
       "Java",
+      "后端",
       "Spring Boot",
-      "Maven",
-      "Nginx",
-      "Redis"
+      "入门",
+      "语法"
     ]
   },
   {
-    "id": "1778313737608",
-    "title": "Prompt Engineering 实践整理",
-    "category": "AI",
-    "categoryColor": "sky",
-    "date": "2026-05-09",
-    "summary": "整理常用的 Prompt 编写技巧和模式，提升与大语言模型交互的效果。",
-    "tags": [
-      "AI",
-      "Prompt",
-      "LLM"
-    ]
-  },
-  {
-    "id": "1778313737886",
-    "title": "Vite 配置常用项整理",
-    "category": "前端",
-    "categoryColor": "sun",
-    "date": "2026-05-08",
-    "summary": "整理 Vite 项目中常用的配置项，包括路径别名、环境变量、构建优化等。",
-    "tags": [
-      "Vite",
-      "构建工具",
-      "配置"
-    ]
-  },
-  {
-    "id": "1778313737306",
-    "title": "Node.js Stream 使用整理",
+    "id": "1779443530368",
+    "title": "Java 后端学习笔记（一）：环境配置与入门",
     "category": "后端",
     "categoryColor": "coral",
-    "date": "2026-05-07",
-    "summary": "整理 Node.js Stream 的核心概念和常见使用场景，避免大文件处理时的内存问题。",
+    "date": "2026-05-22",
+    "summary": "从前端开发者视角整理 Java 后端入门知识，涵盖 JDK、Maven、MySQL、Nginx 环境配置以及标准 Spring Boot 项目结构。",
     "tags": [
-      "Node.js",
-      "Stream",
-      "性能"
+      "Java",
+      "后端",
+      "Spring Boot",
+      "Maven",
+      "环境配置"
+    ]
+  },
+  {
+    "id": "1779443529766",
+    "title": "Vue + TS 前端架构 AI 提示词模板",
+    "category": "AI",
+    "categoryColor": "sky",
+    "date": "2026-05-22",
+    "summary": "Vue 架构师的 AI 提示词模板，遵循高内聚低耦合、状态集中、数据驱动等设计原则。",
+    "tags": [
+      "AI",
+      "提示词",
+      "Vue",
+      "TypeScript",
+      "架构"
     ]
   }
 ]

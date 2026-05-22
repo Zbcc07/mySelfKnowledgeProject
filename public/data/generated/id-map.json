@@ -4,5 +4,12 @@
   "database/mysql-index.md": "1778313737281",
   "frontend/vite-config.md": "1778313737886",
   "frontend/vue3-reactivity.md": "1778313737776",
-  "backend/java-backend-stack.md": "1778320236288"
+  "backend/java-backend-stack.md": "1778320236288",
+  "需求开发/action-flow-app-context.md": "1779442697363",
+  "ai/ai-agents-memo.md": "1779443530331",
+  "ai/ai-long-task-context-guide.md": "1779443529787",
+  "ai/vue-ts-arch-prompt.md": "1779443529766",
+  "backend/java-backend-notes-1.md": "1779443530368",
+  "backend/java-backend-notes-2.md": "1779443530534",
+  "database/common-sql-commands.md": "1779443530293"
 }

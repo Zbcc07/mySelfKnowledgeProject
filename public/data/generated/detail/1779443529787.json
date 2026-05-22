@@ -1,0 +1,113 @@
+{
+  "id": "1779443529787",
+  "title": "AI 长任务上下文管理开发指南",
+  "category": "ai",
+  "categoryName": "AI",
+  "categoryColor": "sky",
+  "tags": [
+    "AI",
+    "上下文管理",
+    "会话管理",
+    "提示词",
+    "开发效率"
+  ],
+  "date": "2026-05-22",
+  "summary": "系统整理 AI 长任务开发中上下文管理的策略，涵盖会话拆分、结构化快照、信息过滤等最佳实践。",
+  "author": "",
+  "source": "",
+  "toc": [
+    {
+      "id": "核心原则",
+      "label": "核心原则"
+    },
+    {
+      "id": "会话管理策略",
+      "label": "会话管理策略"
+    },
+    {
+      "id": "会话拆分时机",
+      "label": "会话拆分时机"
+    },
+    {
+      "id": "结构化快照模板",
+      "label": "结构化快照模板"
+    },
+    {
+      "id": "信息过滤规则",
+      "label": "信息过滤规则"
+    },
+    {
+      "id": "必须传递的信息",
+      "label": "必须传递的信息"
+    },
+    {
+      "id": "必须丢弃的信息",
+      "label": "必须丢弃的信息"
+    },
+    {
+      "id": "实际操作流程",
+      "label": "实际操作流程"
+    },
+    {
+      "id": "场景-开发用户登录模块",
+      "label": "场景：开发用户登录模块"
+    },
+    {
+      "id": "高级技巧",
+      "label": "高级技巧"
+    },
+    {
+      "id": "代码片段管理",
+      "label": "代码片段管理"
+    },
+    {
+      "id": "依赖管理",
+      "label": "依赖管理"
+    },
+    {
+      "id": "错误追踪备忘",
+      "label": "错误追踪备忘"
+    },
+    {
+      "id": "工具与自动化",
+      "label": "工具与自动化"
+    },
+    {
+      "id": "命令行工具示例",
+      "label": "命令行工具示例"
+    },
+    {
+      "id": "ide-插件功能",
+      "label": "IDE 插件功能"
+    },
+    {
+      "id": "自动提取脚本示例",
+      "label": "自动提取脚本示例"
+    },
+    {
+      "id": "紧急情况处理",
+      "label": "紧急情况处理"
+    },
+    {
+      "id": "上下文即将满时",
+      "label": "上下文即将满时"
+    },
+    {
+      "id": "紧急快照模板",
+      "label": "紧急快照模板"
+    },
+    {
+      "id": "质量检查清单",
+      "label": "质量检查清单"
+    },
+    {
+      "id": "性能数据",
+      "label": "性能数据"
+    },
+    {
+      "id": "总结",
+      "label": "总结"
+    }
+  ],
+  "html": "<h2 id=\"核心原则\">核心原则</h2>\n<p>用最少 Tokens 传递最多有效信息，避免因自动压缩导致的任务中断。</p>\n<h2 id=\"会话管理策略\">会话管理策略</h2>\n<h3 id=\"会话拆分时机\">会话拆分时机</h3>\n<p>遇到以下情况时应<strong>立即拆分</strong>会话：</p>\n<ul>\n<li>完成一个独立功能模块</li>\n<li>解决一个复杂 bug 后</li>\n<li>做出重要架构决策后</li>\n<li>每天工作结束时</li>\n<li>上下文使用超过 70% 时</li>\n</ul>\n<p>示例：</p>\n<pre><code class=\"hljs language-bash\"><span class=\"hljs-comment\"># 不要在一个会话中完成整个项目</span>\n[会话1] 需求分析 + 技术选型 → 生成快照\n[会话2] 项目初始化 + 核心框架 → 生成快照\n[会话3] 具体功能实现 → 生成快照\n</code></pre><h3 id=\"结构化快照模板\">结构化快照模板</h3>\n<pre><code class=\"hljs language-markdown\"><span class=\"hljs-section\">## 项目状态快照</span>\n<span class=\"hljs-strong\">**项目**</span>：{项目名称}\n<span class=\"hljs-strong\">**时间**</span>：{YYYY-MM-DD HH:MM}\n\n<span class=\"hljs-section\">### 🎯 当前目标</span>\n{一句话说明本阶段要做什么}\n\n<span class=\"hljs-section\">### ✅ 已完成</span>\n<span class=\"hljs-bullet\">-</span> {具体成果1，可附带文件路径}\n<span class=\"hljs-bullet\">-</span> {具体成果2，附带关键配置}\n\n<span class=\"hljs-section\">### ⏭️ 下一步（本次会话任务）</span>\n<span class=\"hljs-bullet\">1.</span> {具体、可执行的任务1}\n<span class=\"hljs-bullet\">2.</span> {具体、可执行的任务2}\n\n<span class=\"hljs-section\">### 🔑 关键信息</span>\n<span class=\"hljs-bullet\">-</span> 技术栈：{React 18 + TypeScript}\n<span class=\"hljs-bullet\">-</span> 核心配置：{API地址、环境变量等}\n<span class=\"hljs-bullet\">-</span> 重要决策：{已确定的技术方案}\n\n<span class=\"hljs-section\">### ⚠️ 注意事项</span>\n<span class=\"hljs-bullet\">-</span> {已知问题、待解决、约束条件}\n</code></pre><h2 id=\"信息过滤规则\">信息过滤规则</h2>\n<h3 id=\"必须传递的信息\">必须传递的信息</h3>\n<pre><code>✓ 已确定的接口定义\n✓ 当前代码的文件结构\n✓ 正在使用的依赖库版本\n✓ 下一步要修改的具体文件\n✓ 已确认的业务规则\n</code></pre><h3 id=\"必须丢弃的信息\">必须丢弃的信息</h3>\n<pre><code>✗ 调试过程中的 console.log\n✗ 被否决的技术方案详情\n✗ 代码的完整历史修改记录\n✗ 与下一步无关的 API 文档\n✗ 已解决的错误堆栈详情\n</code></pre><h2 id=\"实际操作流程\">实际操作流程</h2>\n<h3 id=\"场景-开发用户登录模块\">场景：开发用户登录模块</h3>\n<p><strong>会话 A 结束时生成快照</strong>：</p>\n<pre><code class=\"hljs language-markdown\"><span class=\"hljs-section\">## 用户登录模块 - 快照v1</span>\n<span class=\"hljs-strong\">**时间**</span>：2026-05-12 14:30\n\n<span class=\"hljs-section\">### 🎯 当前目标</span>\n实现用户登录功能（前端+后端）\n\n<span class=\"hljs-section\">### ✅ 已完成</span>\n<span class=\"hljs-bullet\">-</span> 前端：创建<span class=\"hljs-code\">`/src/pages/login`</span>目录，基础UI完成\n<span class=\"hljs-bullet\">-</span> 后端：<span class=\"hljs-code\">`/api/auth/login`</span>接口框架搭建\n<span class=\"hljs-bullet\">-</span> 数据库：用户表结构设计完成\n\n<span class=\"hljs-section\">### ⏭️ 下一步</span>\n<span class=\"hljs-bullet\">1.</span> 实现前端表单验证（邮箱+密码）\n<span class=\"hljs-bullet\">2.</span> 完成后端JWT生成逻辑\n<span class=\"hljs-bullet\">3.</span> 连接数据库验证用户\n\n<span class=\"hljs-section\">### 🔑 关键信息</span>\n<span class=\"hljs-bullet\">-</span> 前端：React + Ant Design，表单组件路径<span class=\"hljs-code\">`/src/components/LoginForm.tsx`</span>\n<span class=\"hljs-bullet\">-</span> 后端：Express + JWT，接口路径<span class=\"hljs-code\">`/routes/auth.js`</span>\n<span class=\"hljs-bullet\">-</span> 数据库：MySQL，表结构见<span class=\"hljs-code\">`schema/users.sql`</span>\n<span class=\"hljs-bullet\">-</span> 已安装依赖：<span class=\"hljs-code\">`jsonwebtoken`</span>, <span class=\"hljs-code\">`bcryptjs`</span>, <span class=\"hljs-code\">`express-validator`</span>\n\n<span class=\"hljs-section\">### ⚠️ 注意事项</span>\n<span class=\"hljs-bullet\">-</span> 密码需bcrypt加密存储\n<span class=\"hljs-bullet\">-</span> JWT有效期设为7天\n<span class=\"hljs-bullet\">-</span> 需处理重复注册验证\n</code></pre><p><strong>开启会话 B 时</strong>：</p>\n<pre><code># 粘贴上面的快照，然后直接给出任务\n基于以上快照，请继续实现任务：\n1. 首先完成LoginForm.tsx的表单验证逻辑\n2. 然后实现JWT生成中间件\n当前遇到的具体问题是：验证规则已定义但未与UI绑定\n</code></pre><h2 id=\"高级技巧\">高级技巧</h2>\n<h3 id=\"代码片段管理\">代码片段管理</h3>\n<pre><code class=\"hljs language-javascript\"><span class=\"hljs-comment\">// 不要传递整个文件</span>\n<span class=\"hljs-comment\">// ✅ 正确做法：只传递相关部分</span>\n<span class=\"hljs-comment\">// 文件位置：/src/services/auth.js</span>\n<span class=\"hljs-keyword\">async</span> <span class=\"hljs-keyword\">function</span> <span class=\"hljs-title function_\">loginUser</span>(<span class=\"hljs-params\">credentials</span>) {\n  <span class=\"hljs-comment\">// 已实现：参数验证、数据库查询</span>\n  <span class=\"hljs-comment\">// <span class=\"hljs-doctag\">TODO:</span> 需要添加JWT生成逻辑</span>\n  <span class=\"hljs-comment\">// 当前代码行：45-60</span>\n}\n\n<span class=\"hljs-comment\">// ❌ 错误做法：粘贴整个200行文件</span>\n</code></pre><h3 id=\"依赖管理\">依赖管理</h3>\n<pre><code class=\"hljs language-json\"><span class=\"hljs-comment\">// 在快照中只记录新增的重要依赖</span>\n<span class=\"hljs-attr\">&quot;关键依赖更新&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">{</span>\n  <span class=\"hljs-attr\">&quot;新增&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">[</span><span class=\"hljs-string\">&quot;jsonwebtoken@^9.0.0&quot;</span><span class=\"hljs-punctuation\">,</span> <span class=\"hljs-string\">&quot;bcryptjs@^2.4.3&quot;</span><span class=\"hljs-punctuation\">]</span><span class=\"hljs-punctuation\">,</span>\n  <span class=\"hljs-attr\">&quot;版本冲突&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;无&quot;</span>\n<span class=\"hljs-punctuation\">}</span>\n</code></pre><h3 id=\"错误追踪备忘\">错误追踪备忘</h3>\n<pre><code class=\"hljs language-markdown\"><span class=\"hljs-section\">### 🐛 已知问题追踪</span>\n<span class=\"hljs-bullet\">1.</span> <span class=\"hljs-strong\">**问题**</span>：跨域请求失败\n   <span class=\"hljs-strong\">**状态**</span>：已解决（配置了CORS）\n\n<span class=\"hljs-bullet\">2.</span> <span class=\"hljs-strong\">**问题**</span>：密码加密性能\n   <span class=\"hljs-strong\">**状态**</span>：待优化（bcrypt rounds=12）\n\n<span class=\"hljs-bullet\">3.</span> <span class=\"hljs-strong\">**问题**</span>：Token刷新机制\n   <span class=\"hljs-strong\">**状态**</span>：未开始\n</code></pre><h2 id=\"工具与自动化\">工具与自动化</h2>\n<h3 id=\"命令行工具示例\">命令行工具示例</h3>\n<pre><code class=\"hljs language-bash\"><span class=\"hljs-comment\"># 生成快照</span>\n$ ai-snapshot --project auth-module --step login-frontend\n\n<span class=\"hljs-comment\"># 查看当前会话token使用</span>\n$ ai-tokens --check\n\n<span class=\"hljs-comment\"># 清理会话历史但保留最后5条</span>\n$ ai-clean --keep 5\n</code></pre><h3 id=\"ide-插件功能\">IDE 插件功能</h3>\n<ul>\n<li><strong>VS Code AI Context Manager</strong>：<ul>\n<li>自动检测上下文使用量</li>\n<li>一键生成结构化快照</li>\n<li>代码片段智能提取</li>\n<li>依赖变更自动记录</li>\n</ul>\n</li>\n</ul>\n<h3 id=\"自动提取脚本示例\">自动提取脚本示例</h3>\n<pre><code class=\"hljs language-python\"><span class=\"hljs-keyword\">import</span> re\n\n<span class=\"hljs-keyword\">def</span> <span class=\"hljs-title function_\">extract_key_info</span>(<span class=\"hljs-params\">code_content</span>):\n    <span class=\"hljs-string\">&quot;&quot;&quot;从代码中提取关键信息&quot;&quot;&quot;</span>\n    patterns = {\n        <span class=\"hljs-string\">&#x27;imports&#x27;</span>: <span class=\"hljs-string\">r&#x27;import\\s+.+?from\\s+.+?[\\&#x27;\\&quot;]&#x27;</span>,\n        <span class=\"hljs-string\">&#x27;exports&#x27;</span>: <span class=\"hljs-string\">r&#x27;export\\s+(?:default\\s+)?(?:class|function|const)\\s+(\\w+)&#x27;</span>,\n        <span class=\"hljs-string\">&#x27;todo&#x27;</span>: <span class=\"hljs-string\">r&#x27;//\\s*TODO:\\s*(.+)&#x27;</span>,\n        <span class=\"hljs-string\">&#x27;fixme&#x27;</span>: <span class=\"hljs-string\">r&#x27;//\\s*FIXME:\\s*(.+)&#x27;</span>\n    }\n    <span class=\"hljs-comment\"># 提取并返回精简信息</span>\n</code></pre><h2 id=\"紧急情况处理\">紧急情况处理</h2>\n<h3 id=\"上下文即将满时\">上下文即将满时</h3>\n<pre><code class=\"hljs language-bash\"><span class=\"hljs-comment\"># 立即执行</span>\n1. 停止新任务，保存当前状态\n2. 运行：extract_current_state()  <span class=\"hljs-comment\"># 提取核心状态</span>\n3. 生成紧急快照（只保留绝对必要信息）\n4. 复制快照，开启新会话\n</code></pre><h3 id=\"紧急快照模板\">紧急快照模板</h3>\n<pre><code class=\"hljs language-markdown\"><span class=\"hljs-section\">## 紧急快照</span>\n<span class=\"hljs-strong\">**文件**</span>：{当前编辑的文件}\n<span class=\"hljs-strong\">**函数**</span>：{正在修改的函数}\n<span class=\"hljs-strong\">**行号**</span>：{当前行}\n<span class=\"hljs-strong\">**状态**</span>：{完成/未完成}\n<span class=\"hljs-strong\">**下一步**</span>：{接下来要做的具体一行操作}\n<span class=\"hljs-strong\">**关键变量**</span>：{当前作用域的关键变量}\n</code></pre><h2 id=\"质量检查清单\">质量检查清单</h2>\n<p>在切换会话前，检查：</p>\n<ul>\n<li><input disabled=\"\" type=\"checkbox\"> 快照是否超过 200 字？</li>\n<li><input disabled=\"\" type=\"checkbox\"> 是否包含具体的文件路径？</li>\n<li><input disabled=\"\" type=\"checkbox\"> 是否明确下一步的 1-3 个具体任务？</li>\n<li><input disabled=\"\" type=\"checkbox\"> 是否包含必要的代码片段（不超过 20 行）？</li>\n<li><input disabled=\"\" type=\"checkbox\"> 是否已清理调试信息、控制台输出？</li>\n<li><input disabled=\"\" type=\"checkbox\"> 外部文档是否已更新？</li>\n</ul>\n<h2 id=\"性能数据\">性能数据</h2>\n<table>\n<thead>\n<tr>\n<th>策略</th>\n<th>Token 消耗</th>\n<th>信息保留率</th>\n<th>推荐场景</th>\n</tr>\n</thead>\n<tbody><tr>\n<td>完整复制历史</td>\n<td>1000-5000+</td>\n<td>100%</td>\n<td>法律文档、精确恢复</td>\n</tr>\n<tr>\n<td>结构化快照</td>\n<td>150-300</td>\n<td>90-95%</td>\n<td>日常开发（推荐）</td>\n</tr>\n<tr>\n<td>仅关键信息</td>\n<td>50-100</td>\n<td>70-80%</td>\n<td>简单任务延续</td>\n</tr>\n<tr>\n<td>全新开始</td>\n<td>0</td>\n<td>0%</td>\n<td>完全独立新任务</td>\n</tr>\n</tbody></table>\n<h2 id=\"总结\">总结</h2>\n<p><strong>核心工作流</strong>：</p>\n<pre><code>编码 → 达到检查点 → 生成结构化快照 →\n开启新会话 → 粘贴快照 → 继续编码\n</code></pre><p><strong>关键数字</strong>：</p>\n<ul>\n<li>快照长度：100-300 字为佳</li>\n<li>代码片段：不超过 20 行</li>\n<li>任务项：每次 1-3 个具体任务</li>\n<li>检查频率：每 1-2 小时或完成小功能后</li>\n</ul>\n<p><strong>记住</strong>：快照不是文档，是<strong>接力棒</strong>——只需让下一个 AI 知道该从哪里继续跑。</p>\n"
+}
